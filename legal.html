@@ -93,6 +93,14 @@ footer{background:var(--g800);padding:28px 20px;text-align:center}
   .hero{padding:28px 16px 24px}
 }
 </style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S3SH49WG0W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-S3SH49WG0W');
+</script>
 </head>
 <body>
 
@@ -286,7 +294,7 @@ footer{background:var(--g800);padding:28px 20px;text-align:center}
     <div class="contact-box">
       <h3>Get in Touch</h3>
       <p>We typically respond within 1–2 business days.</p>
-      <a href="mailto:hello@loveyourpdf.com" class="contact-btn">✉️ hello@loveyourpdf.com</a>
+      <a href="/cdn-cgi/l/email-protection#9df5f8f1f1f2ddf1f2ebf8e4f2e8efedf9fbb3fef2f0" class="contact-btn">✉️ <span class="__cf_email__" data-cfemail="18707d7474775874776e7d61776d6a687c7e367b7775">[email&#160;protected]</span></a>
     </div>
 
     <h3>Data Requests</h3>
@@ -312,21 +320,11 @@ footer{background:var(--g800);padding:28px 20px;text-align:center}
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Highlight active nav pill on scroll
 const sections = ['privacy','terms','cookies','contact'];
 const pills = document.querySelectorAll('.nav-pill');
 window.addEventListener('scroll', () => {
   let current = 'privacy';
   sections.forEach(id => {
-    const el = document.getElementById(id);
-    if (el && window.scrollY >= el.offsetTop - 120) current = id;
-  });
-  pills.forEach(p => {
-    p.classList.toggle('active', p.getAttribute('href') === '#' + current);
-  });
-});
-</script>
-
-</body>
-</html>
+    c
