@@ -101,7 +101,7 @@ def split():
 
 
 # ── COMPRESS ───────────────────────────────────────────────────────
-@app.route('/api/compress', methods='POST')
+@app.route('/api/compress', methods=['POST'])
 def compress():
     f = request.files.get('file')
     if not f: return err('No file uploaded')
