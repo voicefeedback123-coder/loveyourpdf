@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free online PDF tools — Merge, Split, Compress PDF and convert JPG to PDF instantly. No signup needed. 100% free.">
+<title>LoveYourPDF — Free PDF Tools Online</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & TOKENS ─────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#E8341C;--red-dk:#c42a14;--red-lt:#fff3f0;--red-mid:#FECDC6;
+  --bg:#F7F7F7;--white:#fff;
+  --g100:#F2F2F2;--g200:#E4E4E4;--g400:#A0A0A0;--g600:#5C5C5C;--g800:#1A1A1A;
+  --green:#16A34A;--green-lt:#F0FDF4;--blue:#1D6FE8;
+  --shadow:0 2px 12px rgba(0,0,0,.08);
+  --shadow-lg:0 8px 32px rgba(0,0,0,.12);
+  --r:14px;--r-sm:10px;
+  --font:'Nunito',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--g800);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+/* ── HEADER ─────────────────────────────────────────────────────── */
+header{background:var(--white);border-bottom:1px solid var(--g200);position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.07)}
+.hd{max-width:960px;margin:0 auto;padding:0 20px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo-icon{font-size:24px;line-height:1}
+.logo-text{font-size:20px;font-weight:900;letter-spacing:-.4px}
+.logo-text .lt1{color:var(--red)}
+.logo-text .lt2{color:var(--g800)}
+.logo-text .lt3{color:var(--red)}
+.hd-badges{display:flex;gap:6px;align-items:center}
+.hd-badge{display:flex;align-items:center;gap:4px;font-size:11px;font-weight:800;padding:4px 10px;border-radius:20px;letter-spacing:.2px;white-space:nowrap}
+.hd-badge.free{background:#FFF3F0;color:var(--red);border:1.5px solid #FECDC6}
+.hd-badge.secure{background:#F0FDF4;color:#15803D;border:1.5px solid #A7F3D0}
+.hd-badge.fast{background:#EFF6FF;color:#1D4ED8;border:1.5px solid #BFDBFE}
+@media(max-width:640px){.hd-badge.fast{display:none}}
+@media(max-width:480px){.hd-badge.secure{display:none}}
+@media(max-width:360px){.hd-badge.free{display:none}}
+
+/* ── HERO ────────────────────────────────────────────────────────── */
+.hero{background:linear-gradient(150deg,#fff8f6 0%,#ffffff 55%,#f0f6ff 100%);padding:32px 20px 28px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(232,52,28,.04) 0%,transparent 70%);pointer-events:none}
+.hero h1{font-size:clamp(26px,5.5vw,50px);font-weight:900;line-height:1.12;margin-bottom:14px;letter-spacing:-.5px}
+.hero h1 b{color:var(--red)}
+.hero p{font-size:clamp(14px,2.2vw,17px);color:var(--g600);font-weight:600;max-width:500px;margin:0 auto 28px;line-height:1.7}
+.pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:0}
+.pill{background:var(--white);border:1.5px solid var(--g200);border-radius:30px;padding:6px 14px;font-size:12.5px;font-weight:700;color:var(--g600);display:flex;align-items:center;gap:5px;box-shadow:0 1px 4px rgba(0,0,0,.06);transition:all .15s}
+.pill:hover{border-color:var(--red);color:var(--red);transform:translateY(-1px);box-shadow:0 3px 10px rgba(232,52,28,.12)}
+
+/* ── AD SLOT TOP ─────────────────────────────────────────────────── */
+.ad-banner{max-width:960px;margin:8px auto 0;padding:0 16px}
+.ad-inner{background:var(--g100);border:1px solid var(--g200);border-radius:var(--r-sm);padding:14px;text-align:center;font-size:11px;color:var(--g400);font-weight:700;letter-spacing:.5px;min-height:66px;display:flex;align-items:center;justify-content:center}
+
+/* ── TOOL TABS ───────────────────────────────────────────────────── */
+.tabs-wrap{background:var(--white);border-bottom:2px solid var(--g200);margin-top:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tabs-wrap::-webkit-scrollbar{display:none}
+.tabs{max-width:960px;margin:0 auto;display:flex;padding:0 16px;gap:2px}
+.tab{flex-shrink:0;padding:16px 18px 13px;font-size:13px;font-weight:800;color:var(--g400);border:none;background:none;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;display:flex;align-items:center;gap:7px;font-family:var(--font);white-space:nowrap;border-radius:10px 10px 0 0;position:relative}
+.tab:hover{color:var(--g800);background:#f9f9f9}
+.tab.on{color:var(--red);border-bottom-color:var(--red);background:var(--red-lt)}
+.tab-ic{font-size:18px}
+.tab-label{display:flex;flex-direction:column;align-items:flex-start;gap:1px}
+.tab-sublabel{font-size:9px;font-weight:700;color:var(--g400);letter-spacing:.3px;line-height:1;text-transform:uppercase}
+.tab.on .tab-sublabel{color:var(--red);opacity:.7}
+
+/* ── MAIN LAYOUT ─────────────────────────────────────────────────── */
+.wrap{max-width:960px;margin:0 auto;padding:18px 16px 80px;display:grid;grid-template-columns:1fr minmax(0,300px);gap:24px}
+@media(max-width:720px){.wrap{grid-template-columns:1fr}}
+.col-main{}
+.col-side{}
+
+/* ── PANEL ───────────────────────────────────────────────────────── */
+.panel{display:none;animation:fadeUp .2s ease}
+.panel.on{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.panel-hd{margin-bottom:22px}
+.panel-hd h2{font-size:22px;font-weight:900;margin-bottom:5px}
+.panel-hd p{font-size:13.5px;color:var(--g600);font-weight:600;line-height:1.5}
+
+/* ── DROP ZONE ───────────────────────────────────────────────────── */
+.drop{border:2.5px dashed var(--g200);border-radius:var(--r);background:var(--white);padding:42px 24px 32px;text-align:center;cursor:pointer;transition:all .2s;position:relative;box-shadow:var(--shadow)}
+.drop:hover,.drop.over{border-color:var(--red);background:var(--red-lt);box-shadow:0 0 0 6px rgba(232,52,28,.06);transform:scale(1.005)}
+/* Input is hidden — triggered via label or js click, NOT covering whole area */
+.drop input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.drop-ic{font-size:48px;display:block;margin-bottom:10px;pointer-events:none}
+.drop-title{font-size:17px;font-weight:900;margin-bottom:6px;pointer-events:none}
+.drop-sub{font-size:13px;color:var(--g400);font-weight:600;margin-bottom:14px;pointer-events:none}
+.btn-browse{display:inline-flex;align-items:center;gap:6px;background:var(--red);color:#fff;border:none;border-radius:30px;padding:11px 26px;font-size:14px;font-weight:800;font-family:var(--font);cursor:pointer;transition:all .15s}
+.drop:hover .btn-browse,.drop.over .btn-browse{background:var(--red-dk)}
+
+/* "Add more" strip shown below file cards */
+.add-more-bar{
+  margin-top:10px;display:flex;align-items:center;justify-content:center;gap:10px;
+  padding:10px;border:2px dashed var(--g200);border-radius:var(--r-sm);
+  cursor:pointer;transition:all .15s;background:var(--white);
+}
+.add-more-bar:hover{border-color:var(--red);background:var(--red-lt)}
+.add-more-bar span{font-size:13px;font-weight:700;color:var(--g400)}
+.add-more-bar:hover span{color:var(--red)}
+
+/* ── FILE LIST — drag-reorder cards ─────────────────────────────── */
+.file-list{margin-top:16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.file-list.single-col{grid-template-columns:1fr}
+
+/* card */
+.file-card{
+  background:var(--white);border:1.5px solid var(--g200);border-radius:var(--r);
+  padding:14px 12px 12px;display:flex;flex-direction:column;align-items:center;
+  gap:8px;box-shadow:var(--shadow);position:relative;cursor:grab;
+  user-select:none;-webkit-user-select:none;
+  transition:box-shadow .15s,transform .15s,border-color .15s;
+  animation:cardIn .2s ease;
+}
+@keyframes cardIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
+.file-card:hover{border-color:var(--g400);box-shadow:var(--shadow-lg)}
+.file-card.dragging{
+  opacity:.35;border-color:var(--red);border-style:dashed;
+  transform:scale(.97);box-shadow:none;cursor:grabbing;
+}
+.file-card.drag-over{
+  border-color:var(--red);background:var(--red-lt);
+  transform:scale(1.03);box-shadow:0 0 0 3px rgba(232,52,28,.18);
+}
+
+/* sequence badge */
+.fc-seq{
+  position:absolute;top:-10px;left:-10px;
+  background:var(--red);color:#fff;
+  width:24px;height:24px;border-radius:50%;
+  font-size:12px;font-weight:900;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 6px rgba(232,52,28,.4);
+  transition:background .15s;
+  z-index:2;pointer-events:none;
+}
+
+/* drag handle */
+.fc-handle{
+  position:absolute;top:8px;left:8px;
+  color:var(--g400);font-size:16px;line-height:1;
+  cursor:grab;user-select:none;
+}
+
+/* delete btn — always visible, top-right, red circle */
+.fc-del{
+  position:absolute;top:6px;right:6px;
+  background:var(--red);color:#fff;
+  border:none;cursor:pointer;
+  width:22px;height:22px;border-radius:50%;
+  font-size:14px;font-weight:900;
+  display:flex;align-items:center;justify-content:center;
+  line-height:1;transition:background .15s, transform .15s;
+  z-index:5;box-shadow:0 1px 4px rgba(232,52,28,.4);
+}
+.fc-del:hover{background:var(--red-dk);transform:scale(1.12)}
+
+/* file icon / thumbnail */
+.fc-thumb{
+  width:52px;height:64px;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:36px;background:var(--g100);flex-shrink:0;
+  overflow:hidden;
+}
+.fc-thumb img{width:100%;height:100%;object-fit:cover;border-radius:6px}
+
+/* file name & size */
+.fc-name{
+  font-size:12px;font-weight:800;text-align:center;
+  overflow:hidden;text-overflow:ellipsis;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+  word-break:break-all;max-width:100%;line-height:1.3;
+}
+.fc-size{font-size:11px;color:var(--g400);font-weight:700}
+
+/* drag hint */
+.drag-hint{
+  display:flex;align-items:center;justify-content:center;gap:6px;
+  font-size:12px;color:var(--g400);font-weight:700;
+  margin-top:8px;padding:6px 0;
+}
+.file-note{font-size:12px;color:var(--g400);font-weight:700;text-align:center;margin-top:8px}
+
+/* drop ghost placeholder */
+.file-card.ghost{
+  background:var(--red-lt);border:2px dashed var(--red);
+  opacity:.5;
+}
+
+/* ── OPTIONS BOX ─────────────────────────────────────────────────── */
+.opts{background:var(--white);border:1.5px solid var(--g200);border-radius:var(--r);padding:18px 20px;margin-top:14px;box-shadow:var(--shadow)}
+.opts-label{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--g400);margin-bottom:12px}
+.chip-row{display:flex;gap:8px;flex-wrap:wrap}
+.chip{flex:1;min-width:90px;padding:10px 12px;border:2px solid var(--g200);border-radius:var(--r-sm);text-align:center;font-size:13px;font-weight:800;color:var(--g600);cursor:pointer;transition:all .15s;background:var(--white);font-family:var(--font)}
+.chip.on{border-color:var(--red);color:var(--red);background:var(--red-lt)}
+.range-inp{width:100%;margin-top:12px;padding:10px 14px;border:2px solid var(--g200);border-radius:var(--r-sm);font-size:14px;font-weight:700;font-family:var(--font);outline:none;transition:border .15s;display:none}
+.range-inp:focus{border-color:var(--red)}
+.range-inp.show{display:block}
+.range-hint{font-size:12px;color:var(--g400);font-weight:600;margin-top:6px;display:none}
+.range-hint.show{display:block}
+
+/* ── QUALITY SLIDER ─────────────────────── */
+.quality-wrap{margin-top:14px}
+.quality-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.quality-label{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;color:var(--g400)}
+.quality-badge{font-size:13px;font-weight:900;padding:3px 12px;border-radius:20px;background:var(--red-lt);color:var(--red);border:1.5px solid var(--red-mid);transition:all .2s}
+.quality-slider{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:6px;background:linear-gradient(to right,var(--red) 50%,var(--g200) 50%);outline:none;cursor:pointer}
+.quality-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--white);border:3px solid var(--red);cursor:pointer;box-shadow:0 2px 8px rgba(232,52,28,.3);transition:transform .15s}
+.quality-slider::-webkit-slider-thumb:hover{transform:scale(1.2)}
+.quality-slider::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--white);border:3px solid var(--red);cursor:pointer}
+.quality-ticks{display:flex;justify-content:space-between;margin-top:5px}
+.quality-tick{font-size:10.5px;font-weight:700;color:var(--g400)}
+.size-estimate{margin-top:12px;background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border:1.5px solid #a7f3d0;border-radius:var(--r-sm);padding:12px 16px;display:flex;align-items:center;gap:14px}
+.se-icon{font-size:26px;flex-shrink:0}
+.se-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:3px}
+.se-original{font-size:13px;font-weight:700;color:var(--g600)}
+.se-arrow{font-size:13px;color:var(--g400)}
+.se-new{font-size:16px;font-weight:900;color:var(--green)}
+.se-saving{font-size:12px;font-weight:800;color:var(--green);background:#d1fae5;border-radius:20px;padding:2px 9px}
+.se-note{font-size:11.5px;color:var(--g500);font-weight:600}
+
+/* ── ACTION BUTTON ───────────────────────────────────────────────── */
+.btn-go{width:100%;margin-top:18px;padding:16px;background:var(--red);color:#fff;border:none;border-radius:30px;font-size:16px;font-weight:900;font-family:var(--font);cursor:pointer;transition:all .15s;box-shadow:0 4px 16px rgba(232,52,28,.28);display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-go:hover:not(:disabled){background:var(--red-dk);transform:translateY(-2px);box-shadow:0 6px 22px rgba(232,52,28,.35)}
+.btn-go:active{transform:none}
+.btn-go:disabled{opacity:.55;cursor:not-allowed;transform:none}
+
+/* ── STATUS ──────────────────────────────────────────────────────── */
+.status{margin-top:18px;border-radius:var(--r);padding:22px 18px;text-align:center;display:none}
+.status.proc{display:block;background:#eff6ff;border:1.5px solid #bfdbfe;color:#1e40af}
+.status.ok{display:block;background:#f0fdf4;border:1.5px solid #bbf7d0;color:#14532d}
+.status.fail{display:block;background:#fef2f2;border:1.5px solid #fecaca;color:#7f1d1d}
+.st-ic{font-size:34px;display:block;margin-bottom:8px}
+.st-title{font-size:15px;font-weight:800;margin-bottom:4px}
+.st-msg{font-size:13px;font-weight:600;opacity:.8}
+.st-savings{font-size:24px;font-weight:900;margin:10px 0 4px;color:var(--green)}
+.btn-dl{display:inline-flex;align-items:center;gap:8px;margin-top:14px;background:var(--green);color:#fff;border:none;border-radius:30px;padding:12px 28px;font-size:14px;font-weight:800;font-family:var(--font);cursor:pointer;transition:all .15s}
+.btn-dl:hover{background:#15803d;transform:translateY(-1px)}
+.btn-again{display:inline-flex;align-items:center;gap:6px;margin-top:10px;background:var(--g100);color:var(--g600);border:1.5px solid var(--g200);border-radius:30px;padding:9px 20px;font-size:13px;font-weight:800;font-family:var(--font);cursor:pointer;transition:all .15s}
+.btn-again:hover{background:var(--g200)}
+
+/* ── PROGRESS BAR ────────────────────────────────────────────────── */
+.prog-wrap{margin-top:14px;background:rgba(255,255,255,.5);border-radius:10px;height:6px;overflow:hidden}
+.prog-bar{height:100%;background:var(--blue);border-radius:10px;width:0%;transition:width .3s ease;animation:progAnim 2s ease-in-out infinite}
+@keyframes progAnim{0%{width:10%}50%{width:70%}100%{width:90%}}
+
+/* ── SIDEBAR ─────────────────────────────────────────────────────── */
+.sidebar-card{background:var(--white);border:1.5px solid var(--g200);border-radius:var(--r);padding:18px;box-shadow:var(--shadow);margin-bottom:16px}
+.sc-label{font-size:10px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:var(--g400);margin-bottom:12px}
+.sc-ad{background:var(--g100);border:1px dashed var(--g200);border-radius:var(--r-sm);min-height:250px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--g400);font-weight:700;letter-spacing:.5px}
+.other-tools{display:flex;flex-direction:column;gap:6px}
+.tool-link{display:flex;align-items:center;gap:10px;padding:10px 13px;border-radius:var(--r-sm);background:var(--g100);text-decoration:none;color:var(--g800);font-size:13px;font-weight:700;transition:all .18s;cursor:pointer;border:1.5px solid transparent;font-family:var(--font);width:100%;text-align:left}
+.tool-link:hover{background:var(--red-lt);color:var(--red);border-color:#FECDC6;transform:translateX(2px)}
+.tl-ic{font-size:19px;flex-shrink:0}
+/* trust items */
+.trust-item{display:flex;gap:11px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--g100)}
+.trust-item:last-child{border-bottom:none;padding-bottom:0}
+.trust-ic{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.trust-ic.red{background:#FFF3F0}
+.trust-ic.green{background:#F0FDF4}
+.trust-ic.blue{background:#EFF6FF}
+.trust-ic.orange{background:#FFF7ED}
+.trust-title{font-size:13px;font-weight:800;margin-bottom:2px;color:var(--g800)}
+.trust-desc{font-size:11.5px;color:var(--g600);font-weight:600;line-height:1.5}
+
+/* ── FOOTER ──────────────────────────────────────────────────────── */
+footer{background:var(--g800);border-top:none;padding:36px 20px 28px;text-align:center;margin-top:0}
+.footer-inner{max-width:960px;margin:0 auto}
+.footer-logo{font-size:20px;font-weight:900;color:#fff;margin-bottom:6px}
+.footer-logo span{color:var(--red)}
+.footer-tagline{font-size:13px;color:rgba(255,255,255,.5);font-weight:600;margin-bottom:20px}
+.footer-trust{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-bottom:20px}
+.footer-trust-item{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:rgba(255,255,255,.7)}
+.footer-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1)}
+.footer-links a{font-size:12.5px;color:rgba(255,255,255,.5);font-weight:700;text-decoration:none;transition:color .15s}
+.footer-links a:hover{color:#fff}
+.footer-copy{font-size:11.5px;color:rgba(255,255,255,.3);font-weight:600}
+/* ad slot above footer */
+.ad-above-footer{background:var(--white);border-top:1px solid var(--g200);border-bottom:1px solid var(--g200);padding:14px 20px;display:flex;align-items:center;justify-content:center;min-height:100px}
+.ad-above-footer-inner{width:100%;max-width:728px;min-height:90px;background:var(--g100);border:1px dashed var(--g200);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--g400);font-weight:700;letter-spacing:.5px;position:relative}
+.ad-above-footer-inner::before{content:'ADVERTISEMENT';font-size:9px;font-weight:800;letter-spacing:1px;color:var(--g300);position:absolute;top:5px;left:10px}
+
+/* ── AD BOTTOM BANNER ────────────────────────────────────────────── */
+.ad-bottom-strip{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--g200);padding:8px 16px;z-index:150;display:flex;align-items:center;justify-content:center;min-height:64px;box-shadow:0 -2px 12px rgba(0,0,0,.08)}
+.ad-bottom-inner{font-size:11px;color:var(--g400);font-weight:700;letter-spacing:.5px;width:100%;max-width:728px;min-height:50px;background:var(--g100);border:1px dashed var(--g200);border-radius:6px;display:flex;align-items:center;justify-content:center}
+.ad-close{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:var(--g200);border:none;cursor:pointer;border-radius:50%;width:24px;height:24px;font-size:14px;display:flex;align-items:center;justify-content:center;color:var(--g600)}
+
+/* ── TABLET ──────────────────────── */
+@media(max-width:768px){
+  .wrap{padding:14px 14px 100px}
+  .hero{padding:24px 16px 20px}
+}
+
+/* ── MOBILE ──────────────────────── */
+@media(max-width:480px){
+  /* Header */
+  .hd{height:56px;padding:0 14px}
+  .logo-text{font-size:18px}
+
+  /* Hero */
+  .hero{padding:20px 14px 18px}
+  .hero h1{font-size:24px;letter-spacing:-.3px}
+  .hero p{font-size:13px;margin-bottom:20px}
+  .pills{gap:6px}
+  .pill{font-size:11px;padding:4px 10px}
+
+  /* Tabs — icon only on mobile, no text */
+  .tabs{padding:0 6px;gap:0}
+  .tab{padding:12px 0;flex:1;justify-content:center;gap:0;border-radius:0}
+  .tab-ic{font-size:20px}
+  .tab-label{display:none}
+
+  /* Security strip — single column */
+  .security-strip-inner{flex-direction:column;gap:6px !important;padding:10px 16px}
+
+  /* Main wrap */
+  .wrap{padding:14px 12px 100px;gap:14px}
+
+  /* Panel headings */
+  .panel-hd h2{font-size:18px}
+  .panel-hd p{font-size:13px}
+
+  /* Drop zone */
+  .drop{padding:28px 16px 22px}
+  .drop-ic{font-size:36px}
+  .drop-title{font-size:15px}
+  .btn-browse{font-size:13px;padding:10px 20px}
+
+  /* Action button */
+  .btn-go{font-size:14px;padding:14px 16px}
+
+  /* File cards */
+  .file-list{grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+
+  /* Chips */
+  .chip{font-size:12px;padding:9px 8px;min-width:70px}
+
+  /* Sidebar hidden on mobile */
+  .col-side{display:none}
+}
+
+/* ── TINY PHONES ─────────────────── */
+@media(max-width:360px){
+  .hd-badge.free{display:none}
+  .hero h1{font-size:21px}
+  .tab-ic{font-size:18px}
+}
+
+/* ── FILE LIMIT NOTICE ──────────────────── */
+.limit-box{
+  display:none;margin-top:10px;
+  background:#fffbeb;border:1.5px solid #fde68a;
+  border-radius:var(--r-sm);padding:10px 14px;
+  font-size:12.5px;font-weight:700;color:#92400e;
+  align-items:center;gap:8px;
+}
+
+/* ── AD INTERSTITIAL OVERLAY ────────────── */
+/* Shown for 5s after processing — highest-value ad placement */
+.ad-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.6);z-index:999;
+  align-items:center;justify-content:center;
+  padding:20px;backdrop-filter:blur(2px);
+}
+.ad-overlay.show{display:flex}
+.ad-modal{
+  background:var(--white);border-radius:20px;
+  padding:24px 20px 20px;max-width:360px;width:100%;
+  box-shadow:0 24px 60px rgba(0,0,0,.35);
+  text-align:center;position:relative;
+  animation:popIn .22s ease;
+}
+@keyframes popIn{from{transform:scale(.86);opacity:0}to{transform:scale(1);opacity:1}}
+.ad-modal-title{font-size:14px;font-weight:800;color:var(--g800);margin-bottom:12px}
+.ad-modal-ad{
+  background:var(--g100);border:1px dashed var(--g200);
+  border-radius:var(--r-sm);min-height:250px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;color:var(--g400);font-weight:700;
+  letter-spacing:.6px;margin-bottom:14px;position:relative;
+}
+.ad-modal-ad::before{
+  content:'ADVERTISEMENT';font-size:9px;font-weight:800;
+  letter-spacing:1px;color:var(--g200);
+  position:absolute;top:5px;left:9px;
+}
+.ad-modal-footer{font-size:12.5px;color:var(--g400);font-weight:700}
+.ad-timer{
+  display:inline-block;background:var(--g200);
+  border-radius:20px;padding:2px 10px;
+  font-size:12px;font-weight:800;min-width:26px;color:var(--g600);
+}
+.ad-skip{
+  display:none;color:var(--red);font-size:12px;
+  font-weight:700;cursor:pointer;margin-top:6px;
+  text-decoration:underline;
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="hd">
+    <a href="/" class="logo">
+      <span class="logo-icon">❤️</span>
+      <span class="logo-text"><span class="lt1">Love</span><span class="lt2">Your</span><span class="lt3">PDF</span></span>
+    </a>
+    <div class="hd-badges">
+      <span class="hd-badge free">🛡️ 100% Safe</span>
+      <span class="hd-badge secure">🔒 100% Secure</span>
+      <span class="hd-badge fast">⚡ Lightning Fast</span>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>PDF Tools You'll <b>Actually Love</b></h1>
+  <p>Merge, Split, Compress & Convert PDFs instantly — directly in your browser.<br>100% free. No account. No watermark. Ever.</p>
+  <div class="pills">
+    <span class="pill">✅ Completely Free</span>
+    <span class="pill">🔒 Files deleted in 10 min</span>
+    <span class="pill">🚫 No watermarks</span>
+    <span class="pill">📱 Works on mobile</span>
+    <span class="pill">⚡ No signup required</span>
+  </div>
+</section>
+
+<!-- AD BANNER TOP -->
+<div class="ad-banner">
+  <div class="ad-inner">
+    <!-- Google AdSense Unit goes here -->
+    ADVERTISEMENT
+  </div>
+</div>
+
+<!-- TOOL TABS -->
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab on" onclick="switchTab('merge',this)">
+      <span class="tab-ic">🔗</span>
+      <span class="tab-label">Merge PDF<span class="tab-sublabel">Combine files</span></span>
+    </button>
+    <button class="tab" onclick="switchTab('split',this)">
+      <span class="tab-ic">✂️</span>
+      <span class="tab-label">Split PDF<span class="tab-sublabel">Extract pages</span></span>
+    </button>
+    <button class="tab" onclick="switchTab('compress',this)">
+      <span class="tab-ic">📦</span>
+      <span class="tab-label">Compress PDF<span class="tab-sublabel">Reduce size</span></span>
+    </button>
+    <button class="tab" onclick="switchTab('jpg2pdf',this)">
+      <span class="tab-ic">🖼️</span>
+      <span class="tab-label">JPG → PDF<span class="tab-sublabel">Images to PDF</span></span>
+    </button>
+    <button class="tab" onclick="switchTab('pdf2jpg',this)">
+      <span class="tab-ic">📄</span>
+      <span class="tab-label">PDF → JPG<span class="tab-sublabel">PDF to images</span></span>
+    </button>
+  </div>
+</div>
+
+<!-- SECURITY STRIP -->
+<div style="background:linear-gradient(90deg,#f0fdf4,#eff6ff,#fff3f0);border-bottom:1px solid var(--g200);padding:9px 20px;text-align:center">
+  <div class="security-strip-inner" style="max-width:960px;margin:0 auto;display:flex;flex-wrap:wrap;gap:16px;justify-content:center;align-items:center">
+    <span style="font-size:12px;font-weight:800;color:var(--red);display:flex;align-items:center;gap:5px">🛡️ 100% Safe</span>
+    <span style="font-size:12px;font-weight:800;color:#15803D;display:flex;align-items:center;gap:5px">🔒 SSL Encrypted</span>
+    <span style="font-size:12px;font-weight:800;color:#1D4ED8;display:flex;align-items:center;gap:5px">🗑️ Auto-deleted in 10 min</span>
+    <span style="font-size:12px;font-weight:800;color:#92400E;display:flex;align-items:center;gap:5px">🚫 No signup needed</span>
+    <span style="font-size:12px;font-weight:800;color:#7C3AED;display:flex;align-items:center;gap:5px">✨ No watermarks</span>
+  </div>
+</div>
+<div class="wrap">
+<div class="col-main">
+
+  <!-- ── MERGE ─────────────────────────────────── -->
+  <div class="panel on" id="panel-merge">
+    <div class="panel-hd">
+      <h2>🔗 Merge PDF Files</h2>
+      <p>Combine multiple PDFs into one file. Upload up to 5 files — they merge in the order you add them.</p>
+    </div>
+    <div class="drop" id="drop-merge" onclick="document.getElementById('merge-files').click()" ondragover="onDrag(event,this)" ondragleave="offDrag(this)" ondrop="onDrop(event,'merge-files','pdf')">
+      <input type="file" id="merge-files" accept=".pdf" multiple onchange="addFiles(this,'merge')">
+      <span class="drop-ic">📂</span>
+      <div class="drop-title">Drop PDF files here</div>
+      <div class="drop-sub">or click to browse your device</div>
+      <div class="btn-browse">📁 Select PDF Files</div>
+      <div style="margin-top:10px;font-size:11px;color:var(--g400);font-weight:700">🔒 Files processed securely · Deleted in 10 min</div>
+    </div>
+    <div class="file-list" id="merge-list"></div>
+    <div id="merge-add-more" style="display:none">
+      <div class="add-more-bar" onclick="document.getElementById('merge-files').click()">
+        <span>➕ Add more PDFs</span>
+        <span style="font-size:11px;color:var(--g400)" id="merge-slots"></span>
+      </div>
+    </div>
+    <div class="file-note" id="merge-note"></div>
+    <div class="limit-box" id="merge-limit">⚠️ Max 5 files reached. Remove a file to add a different one.</div>
+    <button class="btn-go" id="merge-btn" onclick="doMerge()" disabled>🔗 Merge PDFs Now</button>
+    <div class="status" id="merge-status"></div>
+  </div>
+
+  <!-- ── SPLIT ─────────────────────────────────── -->
+  <div class="panel" id="panel-split">
+    <div class="panel-hd">
+      <h2>✂️ Split PDF</h2>
+      <p>Extract pages from a PDF. Split all pages into separate files, or choose a custom page range.</p>
+    </div>
+    <div class="drop" id="drop-split" onclick="document.getElementById('split-file').click()" ondragover="onDrag(event,this)" ondragleave="offDrag(this)" ondrop="onDrop(event,'split-file','pdf')">
+      <input type="file" id="split-file" accept=".pdf" onchange="addSingleFile(this,'split')">
+      <span class="drop-ic">📄</span>
+      <div class="drop-title">Drop a PDF here</div>
+      <div class="drop-sub">or click to browse your device</div>
+      <div class="btn-browse">📁 Select PDF File</div>
+    </div>
+    <div class="file-list" id="split-list"></div>
+
+    <!-- Page count info — shown after file selected -->
+    <div id="split-page-info" style="display:none;margin-top:10px;background:var(--g100);border:1.5px solid var(--g200);border-radius:var(--r-sm);padding:12px 16px;display:none;align-items:center;gap:10px">
+      <span style="font-size:22px">📊</span>
+      <div>
+        <div style="font-size:13px;font-weight:800;color:var(--g800)" id="split-page-count-label">This PDF has <span id="split-total-pages">—</span> pages</div>
+        <div style="font-size:12px;font-weight:600;color:var(--g600)" id="split-output-note">All pages mode will create <strong id="split-files-out">—</strong> separate PDF files</div>
+      </div>
+    </div>
+
+    <div class="opts" id="split-opts" style="display:none">
+      <div class="opts-label">Split Mode</div>
+      <div class="chip-row">
+        <button class="chip on" onclick="setSplitMode('all',this)">📃 All Pages</button>
+        <button class="chip" onclick="setSplitMode('range',this)">📑 Page Range</button>
+      </div>
+      <input class="range-inp" id="split-range" placeholder="e.g. 1-3, 5, 7-9" type="text" oninput="calcRangePages()">
+      <div class="range-hint show" id="split-hint" style="display:none">
+        <span id="split-range-preview" style="color:var(--g800);font-weight:800"></span>
+        <span id="split-range-tip" style="color:var(--g400)">Enter pages e.g. 1-3, 5, 8-10</span>
+      </div>
+    </div>
+    <button class="btn-go" id="split-btn" onclick="doSplit()" disabled>✂️ Split PDF Now</button>
+    <div class="status" id="split-status"></div>
+  </div>
+
+  <!-- ── COMPRESS ───────────────────────────────── -->
+  <div class="panel" id="panel-compress">
+    <div class="panel-hd">
+      <h2>📦 Compress PDF</h2>
+      <p>Reduce your PDF file size. Pick a preset or drag the slider to set your exact quality level.</p>
+    </div>
+    <div class="drop" id="drop-compress" onclick="document.getElementById('compress-file').click()" ondragover="onDrag(event,this)" ondragleave="offDrag(this)" ondrop="onDrop(event,'compress-file','pdf')">
+      <input type="file" id="compress-file" accept=".pdf" onchange="addSingleFile(this,'compress')">
+      <span class="drop-ic">📦</span>
+      <div class="drop-title">Drop a PDF here</div>
+      <div class="drop-sub">or click to browse your device</div>
+      <div class="btn-browse">📁 Select PDF File</div>
+    </div>
+    <div class="file-list" id="compress-list"></div>
+
+    <div class="opts" id="compress-opts" style="display:none">
+
+      <!-- Preset chips -->
+      <div class="opts-label">Quick Presets</div>
+      <div class="chip-row">
+        <button class="chip" id="chip-low"    onclick="setPreset(85,this)">🟢 Low<small>Best quality</small></button>
+        <button class="chip on" id="chip-med" onclick="setPreset(50,this)">🟡 Medium<small>Balanced</small></button>
+        <button class="chip" id="chip-high"   onclick="setPreset(20,this)">🔴 High<small>Smallest file</small></button>
+      </div>
+
+      <!-- Quality slider -->
+      <div class="quality-wrap">
+        <div class="quality-header">
+          <span class="quality-label">Custom Quality</span>
+          <span class="quality-badge" id="quality-badge">50%</span>
+        </div>
+        <input type="range" class="quality-slider" id="quality-slider"
+               min="10" max="90" value="50" step="1"
+               oninput="onSliderMove(this.value)">
+        <div class="quality-ticks">
+          <span class="quality-tick">10% — Max compression</span>
+          <span class="quality-tick">90% — Best quality</span>
+        </div>
+      </div>
+
+      <!-- Live size estimate -->
+      <div class="size-estimate" id="size-estimate">
+        <span class="se-icon">📉</span>
+        <div style="flex:1;min-width:0">
+          <div class="se-row">
+            <span class="se-original" id="se-original">— MB</span>
+            <span class="se-arrow">→</span>
+            <span class="se-new" id="se-new">— MB</span>
+            <span class="se-saving" id="se-saving">~0% saved</span>
+          </div>
+          <div class="se-note" id="se-note">Estimated output size · actual result may vary</div>
+        </div>
+      </div>
+
+    </div>
+
+    <button class="btn-go" id="compress-btn" onclick="doCompress()" disabled>📦 Compress PDF Now</button>
+    <div class="status" id="compress-status"></div>
+  </div>
+
+  <!-- ── JPG → PDF ──────────────────────────────── -->
+  <div class="panel" id="panel-jpg2pdf">
+    <div class="panel-hd">
+      <h2>🖼️ JPG to PDF</h2>
+      <p>Convert images to a PDF. Upload up to 5 images — JPG, PNG, WebP or BMP. Each image becomes one page.</p>
+    </div>
+    <div class="drop" id="drop-jpg2pdf" onclick="document.getElementById('jpg2pdf-files').click()" ondragover="onDrag(event,this)" ondragleave="offDrag(this)" ondrop="onDrop(event,'jpg2pdf-files','image')">
+      <input type="file" id="jpg2pdf-files" accept=".jpg,.jpeg,.png,.webp,.bmp" multiple onchange="addFiles(this,'jpg2pdf')">
+      <span class="drop-ic">🖼️</span>
+      <div class="drop-title">Drop images here</div>
+      <div class="drop-sub">JPG, PNG, WebP, BMP formats supported</div>
+      <div class="btn-browse">📁 Select Images</div>
+      <div style="margin-top:10px;font-size:11px;color:var(--g400);font-weight:700">🔒 Files processed securely · Deleted in 10 min</div>
+    </div>
+    <div class="file-list" id="jpg2pdf-list"></div>
+    <div id="jpg2pdf-add-more" style="display:none">
+      <div class="add-more-bar" onclick="document.getElementById('jpg2pdf-files').click()">
+        <span>➕ Add more images</span>
+        <span style="font-size:11px;color:var(--g400)" id="jpg2pdf-slots"></span>
+      </div>
+    </div>
+    <div class="file-note" id="jpg2pdf-note"></div>
+    <div class="limit-box" id="jpg2pdf-limit">⚠️ Max 5 images reached. Remove one to add a different one.</div>
+    <button class="btn-go" id="jpg2pdf-btn" onclick="doJpgToPdf()" disabled>🖼️ Convert Images to PDF</button>
+    <div class="status" id="jpg2pdf-status"></div>
+  </div>
+
+  <!-- ── PDF → JPG ──────────────────────────────── -->
+  <div class="panel" id="panel-pdf2jpg">
+    <div class="panel-hd">
+      <h2>📄 PDF to JPG</h2>
+      <p>Convert every PDF page into a JPG image. You'll get a ZIP file with all pages as separate images.</p>
+    </div>
+    <div class="drop" id="drop-pdf2jpg" onclick="document.getElementById('pdf2jpg-file').click()" ondragover="onDrag(event,this)" ondragleave="offDrag(this)" ondrop="onDrop(event,'pdf2jpg-file','pdf')">
+      <input type="file" id="pdf2jpg-file" accept=".pdf" onchange="addSingleFile(this,'pdf2jpg')">
+      <span class="drop-ic">📄</span>
+      <div class="drop-title">Drop a PDF here</div>
+      <div class="drop-sub">or click to browse your device</div>
+      <div class="btn-browse">📁 Select PDF File</div>
+    </div>
+    <div class="file-list" id="pdf2jpg-list"></div>
+    <button class="btn-go" id="pdf2jpg-btn" onclick="doPdfToJpg()" disabled>📷 Convert PDF to JPG</button>
+    <div class="status" id="pdf2jpg-status"></div>
+  </div>
+
+</div><!-- /col-main -->
+
+<!-- SIDEBAR -->
+<div class="col-side">
+
+  <!-- Sidebar Ad -->
+  <div class="sidebar-card">
+    <div class="sc-label">Advertisement</div>
+    <div class="sc-ad">
+      <!-- Google AdSense 300×250 goes here -->
+      AD · 300×250
+    </div>
+  </div>
+
+  <!-- Other Tools -->
+  <div class="sidebar-card">
+    <div class="sc-label">All PDF Tools</div>
+    <div class="other-tools">
+      <button class="tool-link" onclick="switchTab('merge',document.querySelectorAll('.tab')[0])">
+        <span class="tl-ic">🔗</span> Merge PDF
+      </button>
+      <button class="tool-link" onclick="switchTab('split',document.querySelectorAll('.tab')[1])">
+        <span class="tl-ic">✂️</span> Split PDF
+      </button>
+      <button class="tool-link" onclick="switchTab('compress',document.querySelectorAll('.tab')[2])">
+        <span class="tl-ic">📦</span> Compress PDF
+      </button>
+      <button class="tool-link" onclick="switchTab('jpg2pdf',document.querySelectorAll('.tab')[3])">
+        <span class="tl-ic">🖼️</span> JPG → PDF
+      </button>
+      <button class="tool-link" onclick="switchTab('pdf2jpg',document.querySelectorAll('.tab')[4])">
+        <span class="tl-ic">📄</span> PDF → JPG
+      </button>
+    </div>
+  </div>
+
+  <!-- Trust card -->
+  <div class="sidebar-card">
+    <div class="sc-label">Why LoveYourPDF?</div>
+    <div class="trust-item">
+      <div class="trust-ic green">🔒</div>
+      <div>
+        <div class="trust-title">Your files stay private</div>
+        <div class="trust-desc">Auto-deleted after 10 minutes. We never read or store your documents.</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-ic blue">⚡</div>
+      <div>
+        <div class="trust-title">Fast & reliable</div>
+        <div class="trust-desc">Processing in under 10 seconds. Powered by secure cloud servers.</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-ic orange">🚫</div>
+      <div>
+        <div class="trust-title">No watermarks, ever</div>
+        <div class="trust-desc">Your output files are 100% clean — no branding added.</div>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-ic red">💰</div>
+      <div>
+        <div class="trust-title">Truly free forever</div>
+        <div class="trust-desc">No account. No credit card. No hidden limits. 5 files per task.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /col-side -->
+</div><!-- /wrap -->
+
+<!-- AD SLOT ABOVE FOOTER (728×90 leaderboard) -->
+<div class="ad-above-footer">
+  <div class="ad-above-footer-inner">
+    <!-- ✅ Google AdSense 728×90 Leaderboard goes here -->
+    <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXX" data-ad-slot="XXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script> -->
+    ADVERTISEMENT · 728×90
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">❤️ LoveYour<span>PDF</span></div>
+    <div class="footer-tagline">Free PDF tools for everyone, everywhere. Made with love in India 🇮🇳</div>
+    <div class="footer-trust">
+      <span class="footer-trust-item">🔒 SSL Encrypted</span>
+      <span class="footer-trust-item">🚫 No Watermarks</span>
+      <span class="footer-trust-item">⚡ No Signup</span>
+      <span class="footer-trust-item">🗑️ Auto-deleted in 10 min</span>
+      <span class="footer-trust-item">📱 Works on all devices</span>
+    </div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Contact Us</a>
+      <a href="#">About</a>
+    </div>
+    <div class="footer-copy">© 2025 LoveYourPDF.com · All files automatically deleted · 100% Free · No account required</div>
+  </div>
+</footer>
+
+<!-- STICKY BOTTOM AD (mobile) -->
+<div class="ad-bottom-strip" id="ad-bottom">
+  <div class="ad-bottom-inner">
+    <!-- Google AdSense 320×50 Mobile Banner goes here -->
+    ADVERTISEMENT
+  </div>
+  <button class="ad-close" onclick="document.getElementById('ad-bottom').style.display='none'">×</button>
+</div>
+
+<!-- AD INTERSTITIAL — shown after processing, before download -->
+<!-- This is the HIGHEST VALUE ad slot: user just finished, about to download -->
+<div class="ad-overlay" id="ad-overlay">
+  <div class="ad-modal">
+    <div class="ad-modal-title">✅ Your file is ready!</div>
+    <div class="ad-modal-ad">
+      <!-- ✅ Google AdSense 300×250 Medium Rectangle goes here -->
+      <!-- <ins class="adsbygoogle" style="display:block;width:300px;height:250px"
+           data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+           data-ad-slot="XXXXXXXXXX"></ins>
+      <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script> -->
+      AD · 300×250
+    </div>
+    <div class="ad-modal-footer">
+      Downloading in <span class="ad-timer" id="ad-countdown">5</span>s
+    </div>
+    <div class="ad-skip" id="ad-skip" onclick="adSkipNow()">Download now →</div>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════════════════════════ */
+const state = {
+  merge:    { files: [], max: 5 },
+  jpg2pdf:  { files: [], max: 5 },
+  split:    { file: null, mode: 'all', totalPages: 0 },
+  compress: { file: null, level: 'medium', quality: 50 },
+  pdf2jpg:  { file: null }
+};
+
+/* ═══════════════════════════════════════════════════════════════
+   TAB SWITCHING
+═══════════════════════════════════════════════════════════════ */
+function switchTab(name, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('panel-' + name).classList.add('on');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   DROP ZONE DRAG (file drop onto dropzone)
+═══════════════════════════════════════════════════════════════ */
+function onDrag(e, el)  { e.preventDefault(); el.classList.add('over'); }
+function offDrag(el)    { el.classList.remove('over'); }
+function onDrop(e, inputId, type) {
+  e.preventDefault(); offDrag(e.currentTarget);
+  const inp = document.getElementById(inputId);
+  const dt  = new DataTransfer();
+  Array.from(e.dataTransfer.files).forEach(f => dt.items.add(f));
+  inp.files = dt.files;
+  inp.dispatchEvent(new Event('change'));
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FILE THUMBNAIL HELPER
+═══════════════════════════════════════════════════════════════ */
+function makeThumbnail(file, isImage) {
+  if (!isImage) return `<div class="fc-thumb">📄</div>`;
+  const id = 'thumb_' + Math.random().toString(36).slice(2);
+  // Load async after render
+  setTimeout(() => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const url = URL.createObjectURL(file);
+    el.innerHTML = `<img src="${url}" onload="URL.revokeObjectURL(this.src)" onerror="this.parentNode.textContent='🖼️'">`;
+  }, 0);
+  return `<div class="fc-thumb" id="${id}">🖼️</div>`;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RENDER FILE CARDS (grid with drag handles + sequence numbers)
+═══════════════════════════════════════════════════════════════ */
+function renderList(tool) {
+  const s      = state[tool];
+  const list   = document.getElementById(tool + '-list');
+  const note   = document.getElementById(tool + '-note');
+  const btn    = document.getElementById(tool + '-btn');
+  const isImg  = tool === 'jpg2pdf';
+  const multi  = s.files.length > 0;
+
+  // Build cards
+  list.innerHTML = s.files.map((f, i) => `
+    <div class="file-card" draggable="true" data-idx="${i}" data-tool="${tool}"
+         ondragstart="cardDragStart(event)"
+         ondragover="cardDragOver(event)"
+         ondragleave="cardDragLeave(event)"
+         ondrop="cardDrop(event)"
+         ondragend="cardDragEnd(event)">
+      <span class="fc-seq">${i + 1}</span>
+      <span class="fc-handle" title="Drag to reorder">⠿</span>
+      <button class="fc-del" onclick="event.stopPropagation();removeFile('${tool}',${i})" title="Remove">✕</button>
+      ${makeThumbnail(f, isImg)}
+      <div class="fc-name" title="${esc(f.name)}">${esc(f.name)}</div>
+      <div class="fc-size">${fmtSize(f.size)}</div>
+    </div>`).join('');
+
+  // Show/hide "Add more" bar
+  const addMoreDiv = document.getElementById(tool + '-add-more');
+  const slotsSpan  = document.getElementById(tool + '-slots');
+  if (addMoreDiv) {
+    const left = s.max - s.files.length;
+    if (s.files.length > 0 && left > 0) {
+      addMoreDiv.style.display = 'block';
+      if (slotsSpan) slotsSpan.textContent = `(${left} more allowed)`;
+    } else {
+      addMoreDiv.style.display = 'none';
+    }
+    // Hide original drop zone once files are added
+    const dropEl = document.getElementById('drop-' + tool);
+    if (dropEl) dropEl.style.display = s.files.length > 0 ? 'none' : 'block';
+  }
+
+  // Show limit notice when max files reached
+  const limitBox = document.getElementById(tool + '-limit');
+  if (limitBox) {
+    const isFull = s.files.length >= s.max;
+    limitBox.style.display = isFull ? 'flex' : 'none';
+  }
+
+  // Show drag hint inside list when 2+ files
+  const existingHint = list.querySelector('.drag-hint');
+  if (existingHint) existingHint.remove();
+  if (s.files.length >= 2) {
+    const hint = document.createElement('div');
+    hint.className = 'drag-hint';
+    hint.style.cssText = 'grid-column:1/-1';
+    hint.innerHTML = '⠿ Drag cards to reorder · merge follows this order';
+    list.appendChild(hint);
+  }
+
+  // Footer note (kept for compatibility, now mostly shown via add-more bar)
+  if (note) {
+    note.textContent = '';
+  }
+
+  // Button state
+  const minFiles = tool === 'merge' ? 2 : 1;
+  btn.disabled = s.files.length < minFiles;
+
+  // Init touch drag on newly rendered cards
+  list.querySelectorAll('.file-card').forEach(initTouchDrag);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MOUSE DRAG-TO-REORDER
+═══════════════════════════════════════════════════════════════ */
+let dragSrcIdx  = null;
+let dragSrcTool = null;
+
+function cardDragStart(e) {
+  const card = e.currentTarget;
+  dragSrcIdx  = parseInt(card.dataset.idx);
+  dragSrcTool = card.dataset.tool;
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/plain', dragSrcIdx);
+  setTimeout(() => card.classList.add('dragging'), 0);
+}
+
+function cardDragOver(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+  const card = e.currentTarget;
+  if (parseInt(card.dataset.idx) !== dragSrcIdx) {
+    card.classList.add('drag-over');
+  }
+}
+
+function cardDragLeave(e) {
+  e.currentTarget.classList.remove('drag-over');
+}
+
+function cardDrop(e) {
+  e.preventDefault();
+  const targetIdx = parseInt(e.currentTarget.dataset.idx);
+  e.currentTarget.classList.remove('drag-over');
+  if (targetIdx === dragSrcIdx || dragSrcTool === null) return;
+  reorderFiles(dragSrcTool, dragSrcIdx, targetIdx);
+}
+
+function cardDragEnd(e) {
+  e.currentTarget.classList.remove('dragging');
+  document.querySelectorAll('.file-card').forEach(c => c.classList.remove('drag-over'));
+  dragSrcIdx = null; dragSrcTool = null;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TOUCH DRAG-TO-REORDER (mobile)
+═══════════════════════════════════════════════════════════════ */
+function initTouchDrag(card) {
+  let startX, startY, clone, scrollY;
+
+  card.addEventListener('touchstart', e => {
+    // Don't intercept touches on delete button
+    if (e.target.classList.contains('fc-del')) return;
+    const t = e.touches[0];
+    startX = t.clientX; startY = t.clientY;
+    scrollY = window.scrollY;
+
+    // Create floating clone
+    const rect = card.getBoundingClientRect();
+    clone = card.cloneNode(true);
+    clone.style.cssText = `
+      position:fixed;top:${rect.top}px;left:${rect.left}px;
+      width:${rect.width}px;height:${rect.height}px;
+      opacity:.85;pointer-events:none;z-index:9999;
+      border:2px solid var(--red);border-radius:var(--r);
+      background:var(--white);box-shadow:var(--shadow-lg);
+      transition:none;transform:scale(1.05);`;
+    document.body.appendChild(clone);
+    card.classList.add('dragging');
+  }, { passive: true });
+
+  card.addEventListener('touchmove', e => {
+    if (!clone) return;
+    e.preventDefault();
+    const t = e.touches[0];
+    const dx = t.clientX - startX;
+    const dy = t.clientY - startY + (window.scrollY - scrollY);
+    const rect = card.getBoundingClientRect();
+    clone.style.transform = `translate(${dx}px,${dy}px) scale(1.05)`;
+
+    // Find card under touch
+    clone.style.display = 'none';
+    const el = document.elementFromPoint(t.clientX, t.clientY);
+    clone.style.display = '';
+    const target = el?.closest('.file-card');
+
+    document.querySelectorAll('.file-card').forEach(c => c.classList.remove('drag-over'));
+    if (target && target !== card) target.classList.add('drag-over');
+  }, { passive: false });
+
+  card.addEventListener('touchend', e => {
+    if (!clone) return;
+    const t = e.changedTouches[0];
+    clone.remove(); clone = null;
+    card.classList.remove('dragging');
+    document.querySelectorAll('.file-card').forEach(c => c.classList.remove('drag-over'));
+
+    const el = document.elementFromPoint(t.clientX, t.clientY);
+    const target = el?.closest('.file-card');
+    if (target && target !== card) {
+      const srcIdx = parseInt(card.dataset.idx);
+      const tgtIdx = parseInt(target.dataset.idx);
+      const tool   = card.dataset.tool;
+      reorderFiles(tool, srcIdx, tgtIdx);
+    }
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   REORDER LOGIC — moves item from srcIdx to tgtIdx
+═══════════════════════════════════════════════════════════════ */
+function reorderFiles(tool, srcIdx, tgtIdx) {
+  const files = state[tool].files;
+  const [moved] = files.splice(srcIdx, 1);
+  files.splice(tgtIdx, 0, moved);
+  renderList(tool);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ADD FILES (merge, jpg2pdf)
+═══════════════════════════════════════════════════════════════ */
+function addFiles(input, tool) {
+  const s = state[tool];
+  Array.from(input.files).forEach(f => {
+    if (s.files.length >= s.max) return;
+    if (!s.files.find(x => x.name === f.name && x.size === f.size))
+      s.files.push(f);
+  });
+  input.value = '';
+  renderList(tool);
+}
+
+function removeFile(tool, idx) {
+  state[tool].files.splice(idx, 1);
+  // If no files left, show the drop zone again
+  if (state[tool].files.length === 0) {
+    const dropEl = document.getElementById('drop-' + tool);
+    if (dropEl) dropEl.style.display = 'block';
+    const addMoreDiv = document.getElementById(tool + '-add-more');
+    if (addMoreDiv) addMoreDiv.style.display = 'none';
+  }
+  renderList(tool);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SINGLE FILE HANDLER (split, compress, pdf2jpg)
+═══════════════════════════════════════════════════════════════ */
+function addSingleFile(input, tool) {
+  const f = input.files[0];
+  if (!f) return;
+  state[tool].file = f;
+  input.value = '';
+
+  // Hide drop zone once file is selected
+  const dropEl = document.getElementById('drop-' + tool);
+  if (dropEl) dropEl.style.display = 'none';
+
+  // Single file uses a simple horizontal row card
+  const list = document.getElementById(tool + '-list');
+  list.className = 'file-list single-col';
+  list.innerHTML = `
+    <div class="file-card" style="flex-direction:row;justify-content:flex-start;padding:12px 16px;cursor:default">
+      <div class="fc-thumb" style="width:36px;height:44px;font-size:26px;background:none">📄</div>
+      <div style="flex:1;min-width:0">
+        <div class="fc-name" style="text-align:left;-webkit-line-clamp:1">${esc(f.name)}</div>
+        <div class="fc-size">${fmtSize(f.size)}</div>
+      </div>
+      <button class="fc-del" onclick="clearSingle('${tool}')" title="Remove" style="position:static;margin-left:8px">×</button>
+    </div>`;
+
+  document.getElementById(tool + '-btn').disabled = false;
+  const opts = document.getElementById(tool + '-opts');
+  if (opts) opts.style.display = 'block';
+
+  // For split: read PDF page count using PDF.js-free method
+  if (tool === 'split') {
+    readPdfPageCount(f);
+  }
+  // For compress: initialise slider estimate with current file size
+  if (tool === 'compress') {
+    const q = parseInt(document.getElementById('quality-slider')?.value || 50);
+    updateSizeEstimate(q);
+  }
+}
+
+function clearSingle(tool) {
+  state[tool].file = null;
+  const list = document.getElementById(tool + '-list');
+  list.className = 'file-list single-col';
+  list.innerHTML = '';
+  document.getElementById(tool + '-btn').disabled = true;
+  const opts = document.getElementById(tool + '-opts');
+  if (opts) opts.style.display = 'none';
+  // Show drop zone again
+  const dropEl = document.getElementById('drop-' + tool);
+  if (dropEl) dropEl.style.display = 'block';
+  // Hide split page info
+  if (tool === 'split') {
+    const info = document.getElementById('split-page-info');
+    if (info) info.style.display = 'none';
+    state.split.totalPages = 0;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SPLIT OPTIONS
+═══════════════════════════════════════════════════════════════ */
+function setSplitMode(mode, el) {
+  state.split.mode = mode;
+  document.querySelectorAll('#split-opts .chip').forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  const rangeInp  = document.getElementById('split-range');
+  const hintEl    = document.getElementById('split-hint');
+  const isRange   = mode === 'range';
+  rangeInp.classList.toggle('show', isRange);
+  hintEl.style.display = isRange ? 'block' : 'none';
+  if (isRange) {
+    calcRangePages();
+  } else {
+    // Switched back to All Pages — update note
+    const total = state.split.totalPages || 0;
+    if (total > 0) {
+      document.getElementById('split-output-note').innerHTML =
+        `All pages mode will create <strong>${total}</strong> separate PDF file${total > 1 ? 's' : ''}`;
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   COMPRESS — QUALITY SLIDER + PRESET CHIPS + LIVE ESTIMATE
+═══════════════════════════════════════════════════════════════ */
+
+/* Compression ratio estimates per quality %
+   Based on real-world PDF image compression averages:
+   - PDFs with images: quality directly maps to JPEG quality
+   - Text-only PDFs: minimal size change regardless of setting
+   We assume a mixed PDF for estimates (realistic middle ground) */
+function estCompressedSize(origBytes, quality) {
+  // quality: 10-90
+  // At quality=90: ~85% of original (very little compression)
+  // At quality=50: ~55% of original  
+  // At quality=10: ~25% of original
+  // Linear interpolation between these anchors
+  const ratio = 0.20 + (quality / 90) * 0.70; // 0.20 → 0.90
+  return Math.round(origBytes * ratio);
+}
+
+function setPreset(quality, el) {
+  // Update chip active state
+  document.querySelectorAll('#compress-opts .chip').forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  // Move slider
+  const slider = document.getElementById('quality-slider');
+  slider.value = quality;
+  onSliderMove(quality, false); // false = don't clear chip selection
+}
+
+function onSliderMove(quality, clearChips = true) {
+  quality = parseInt(quality);
+
+  // Update badge
+  const badge = document.getElementById('quality-badge');
+  badge.textContent = quality + '%';
+
+  // Badge colour based on quality
+  if (quality >= 70) {
+    badge.style.background = '#f0fdf4'; badge.style.color = '#15803d'; badge.style.borderColor = '#a7f3d0';
+  } else if (quality >= 40) {
+    badge.style.background = '#fefce8'; badge.style.color = '#a16207'; badge.style.borderColor = '#fde68a';
+  } else {
+    badge.style.background = 'var(--red-lt)'; badge.style.color = 'var(--red)'; badge.style.borderColor = 'var(--red-mid)';
+  }
+
+  // Update slider track fill
+  const slider = document.getElementById('quality-slider');
+  const pct = ((quality - 10) / 80) * 100;
+  slider.style.background = `linear-gradient(to right, var(--red) ${pct}%, var(--g200) ${pct}%)`;
+
+  // Auto-select nearest preset chip (snap within ±15)
+  if (clearChips) {
+    document.querySelectorAll('#compress-opts .chip').forEach(c => c.classList.remove('on'));
+    if (quality >= 75)      document.getElementById('chip-low')?.classList.add('on');
+    else if (quality >= 35) document.getElementById('chip-med')?.classList.add('on');
+    else                    document.getElementById('chip-high')?.classList.add('on');
+  }
+
+  // Map quality% to backend level string
+  if (quality >= 70)       state.compress.level = 'low';
+  else if (quality >= 35)  state.compress.level = 'medium';
+  else                     state.compress.level = 'high';
+
+  // Store exact quality for future custom API use
+  state.compress.quality = quality;
+
+  // Update live size estimate
+  updateSizeEstimate(quality);
+}
+
+function updateSizeEstimate(quality) {
+  const file = state.compress.file;
+  if (!file) return;
+
+  const origBytes = file.size;
+  const estBytes  = estCompressedSize(origBytes, quality);
+  const saving    = Math.round((1 - estBytes / origBytes) * 100);
+  const origMB    = fmtSize(origBytes);
+  const estMB     = fmtSize(estBytes);
+
+  document.getElementById('se-original').textContent = origMB;
+  document.getElementById('se-new').textContent      = '~' + estMB;
+  document.getElementById('se-saving').textContent   = '~' + Math.max(0, saving) + '% saved';
+
+  // Note changes based on quality
+  const noteEl = document.getElementById('se-note');
+  if (quality >= 75) {
+    noteEl.textContent = 'Minimal compression — best visual quality preserved';
+  } else if (quality >= 40) {
+    noteEl.textContent = 'Good balance of size and quality — recommended for most uses';
+  } else {
+    noteEl.textContent = 'Heavy compression — smaller file, may reduce image quality';
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STATUS HELPERS
+═══════════════════════════════════════════════════════════════ */
+function setStatus(id, type, icon, title, msg, extra='') {
+  const el = document.getElementById(id + '-status');
+  el.className = 'status ' + type;
+  el.innerHTML = `<span class="st-ic">${icon}</span><div class="st-title">${title}</div><div class="st-msg">${msg}</div>${extra}`;
+}
+
+function setProcessing(id) {
+  const el = document.getElementById(id + '-status');
+  el.className = 'status proc';
+  el.innerHTML = `<span class="st-ic">⏳</span><div class="st-title">Processing…</div>
+    <div class="st-msg">This usually takes a few seconds</div>
+    <div class="prog-wrap"><div class="prog-bar"></div></div>`;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   API: MERGE
+═══════════════════════════════════════════════════════════════ */
+async function doMerge() {
+  const { files } = state.merge;
+  setProcessing('merge');
+  document.getElementById('merge-btn').disabled = true;
+  const fd = new FormData();
+  // Files sent in current order = merge sequence
+  files.forEach(f => fd.append('files', f));
+  try {
+    const res = await fetch('/api/merge', { method: 'POST', body: fd });
+    if (!res.ok) {
+      const j = await res.json();
+      setStatus('merge','fail','❌','Merge Failed', j.error);
+    } else {
+      const blob = await res.blob();
+      const url  = URL.createObjectURL(blob);
+      const seq  = files.map((f,i) => `${i+1}. ${f.name}`).join('<br>');
+      setStatus('merge','ok','✅','Merge Complete!',
+        `${files.length} PDFs merged in order:`,
+        `<div style="text-align:left;font-size:12px;margin:10px 0 4px;opacity:.7;line-height:1.8">${seq}</div>
+         <button class="btn-dl" onclick="showAdThen(()=>dlFile('${url}','merged.pdf'))">⬇️ Download merged.pdf</button>
+         <br><button class="btn-again" onclick="resetTool('merge')">↺ Merge again</button>`);
+    }
+  } catch {
+    setStatus('merge','fail','❌','Error', 'Network error. Please try again.');
+  }
+  document.getElementById('merge-btn').disabled = false;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   API: SPLIT
+═══════════════════════════════════════════════════════════════ */
+async function doSplit() {
+  const { file, mode } = state.split;
+  const range = document.getElementById('split-range').value;
+  setProcessing('split');
+  document.getElementById('split-btn').disabled = true;
+  const fd = new FormData();
+  fd.append('file', file);
+  fd.append('mode', mode);
+  if (mode === 'range') fd.append('range', range);
+  try {
+    const res = await fetch('/api/split', { method: 'POST', body: fd });
+    if (!res.ok) {
+      const j = await res.json();
+      setStatus('split','fail','❌','Split Failed', j.error);
+    } else {
+      const blob = await res.blob();
+      const url  = URL.createObjectURL(blob);
+      setStatus('split','ok','✅','Split Complete!',
+        'Pages saved as individual PDFs in a ZIP',
+        `<br><button class="btn-dl" onclick="showAdThen(()=>dlFile('${url}','split_pages.zip'))">⬇️ Download ZIP</button>
+         <br><button class="btn-again" onclick="resetTool('split')">↺ Split again</button>`);
+    }
+  } catch {
+    setStatus('split','fail','❌','Error','Network error. Please try again.');
+  }
+  document.getElementById('split-btn').disabled = false;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   API: COMPRESS
+═══════════════════════════════════════════════════════════════ */
+async function doCompress() {
+  const { file, level } = state.compress;
+  setProcessing('compress');
+  document.getElementById('compress-btn').disabled = true;
+  const fd = new FormData();
+  fd.append('file', file);
+  fd.append('level', level);
+  fd.append('quality', state.compress.quality || 50);
+  try {
+    const res = await fetch('/api/compress', { method: 'POST', body: fd });
+    if (!res.ok) {
+      const j = await res.json();
+      setStatus('compress','fail','❌','Compression Failed', j.error);
+    } else {
+      const blob  = await res.blob();
+      const url   = URL.createObjectURL(blob);
+      const origMB = (parseInt(res.headers.get('X-Original-Size')||0)/1024/1024).toFixed(2);
+      const newMB  = (parseInt(res.headers.get('X-New-Size')||0)/1024/1024).toFixed(2);
+      const saved  = res.headers.get('X-Saved-Percent') || '0';
+      const savings = origMB > 0
+        ? `<div class="st-savings">🎉 Saved ${saved}%</div><div class="st-msg">${origMB} MB → ${newMB} MB</div>`
+        : '';
+      setStatus('compress','ok','✅','Compression Complete!','',
+        `${savings}
+         <br><button class="btn-dl" onclick="showAdThen(()=>dlFile('${url}','compressed.pdf'))">⬇️ Download compressed.pdf</button>
+         <br><button class="btn-again" onclick="resetTool('compress')">↺ Compress again</button>`);
+    }
+  } catch {
+    setStatus('compress','fail','❌','Error','Network error. Please try again.');
+  }
+  document.getElementById('compress-btn').disabled = false;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   API: JPG → PDF
+═══════════════════════════════════════════════════════════════ */
+async function doJpgToPdf() {
+  const { files } = state.jpg2pdf;
+  setProcessing('jpg2pdf');
+  document.getElementById('jpg2pdf-btn').disabled = true;
+  const fd = new FormData();
+  files.forEach(f => fd.append('files', f));
+  try {
+    const res = await fetch('/api/jpg-to-pdf', { method: 'POST', body: fd });
+    if (!res.ok) {
+      const j = await res.json();
+      setStatus('jpg2pdf','fail','❌','Conversion Failed', j.error);
+    } else {
+      const blob = await res.blob();
+      const url  = URL.createObjectURL(blob);
+      setStatus('jpg2pdf','ok','✅','Conversion Complete!',
+        `${files.length} image${files.length > 1 ? 's' : ''} → PDF (in order shown)`,
+        `<br><button class="btn-dl" onclick="showAdThen(()=>dlFile('${url}','images.pdf'))">⬇️ Download PDF</button>
+         <br><button class="btn-again" onclick="resetTool('jpg2pdf')">↺ Convert again</button>`);
+    }
+  } catch {
+    setStatus('jpg2pdf','fail','❌','Error','Network error. Please try again.');
+  }
+  document.getElementById('jpg2pdf-btn').disabled = false;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   API: PDF → JPG
+═══════════════════════════════════════════════════════════════ */
+async function doPdfToJpg() {
+  const { file } = state.pdf2jpg;
+  setProcessing('pdf2jpg');
+  document.getElementById('pdf2jpg-btn').disabled = true;
+  const fd = new FormData();
+  fd.append('file', file);
+  try {
+    const res = await fetch('/api/pdf-to-jpg', { method: 'POST', body: fd });
+    if (!res.ok) {
+      const j = await res.json();
+      setStatus('pdf2jpg','fail','❌','Conversion Failed', j.error);
+    } else {
+      const blob  = await res.blob();
+      const isZip = res.headers.get('content-type')?.includes('zip');
+      const fname = isZip ? 'pdf_pages.zip' : 'page_1.jpg';
+      const url   = URL.createObjectURL(blob);
+      setStatus('pdf2jpg','ok','✅','Conversion Complete!',
+        isZip ? 'All pages converted — download ZIP' : 'PDF converted to JPG',
+        `<br><button class="btn-dl" onclick="showAdThen(()=>dlFile('${url}','${fname}'))">⬇️ Download ${fname}</button>
+         <br><button class="btn-again" onclick="resetTool('pdf2jpg')">↺ Convert again</button>`);
+    }
+  } catch {
+    setStatus('pdf2jpg','fail','❌','Error','Network error. Please try again.');
+  }
+  document.getElementById('pdf2jpg-btn').disabled = false;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HELPERS
+═══════════════════════════════════════════════════════════════ */
+function dlFile(url, name) {
+  const a = document.createElement('a');
+  a.href = url; a.download = name; a.click();
+}
+
+function resetTool(tool) {
+  if (tool === 'merge' || tool === 'jpg2pdf') {
+    state[tool].files = [];
+    const list = document.getElementById(tool + '-list');
+    list.className = 'file-list';
+    list.parentNode.querySelectorAll('.drag-hint').forEach(h => h.remove());
+    // Show drop zone, hide add-more bar
+    const dropEl = document.getElementById('drop-' + tool);
+    if (dropEl) dropEl.style.display = 'block';
+    const addMoreDiv = document.getElementById(tool + '-add-more');
+    if (addMoreDiv) addMoreDiv.style.display = 'none';
+    const limitBox = document.getElementById(tool + '-limit');
+    if (limitBox) limitBox.style.display = 'none';
+    renderList(tool);
+  } else {
+    clearSingle(tool);
+  }
+  const st = document.getElementById(tool + '-status');
+  st.className = 'status';
+  st.innerHTML = '';
+}
+
+function fmtSize(bytes) {
+  if (bytes < 1024)        return bytes + ' B';
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(0) + ' KB';
+  return (bytes / 1024 / 1024).toFixed(1) + ' MB';
+}
+
+function esc(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* Init: make single-col lists for single-file tools */
+document.addEventListener('DOMContentLoaded', () => {
+  ['split','compress','pdf2jpg'].forEach(t => {
+    const l = document.getElementById(t + '-list');
+    if (l) l.className = 'file-list single-col';
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   SPLIT — READ PDF PAGE COUNT (no external lib needed)
+   Reads raw PDF bytes to find /Count value
+═══════════════════════════════════════════════════════════════ */
+function readPdfPageCount(file) {
+  const infoEl    = document.getElementById('split-page-info');
+  const totalEl   = document.getElementById('split-total-pages');
+  const noteEl    = document.getElementById('split-output-note');
+  const filesOutEl = document.getElementById('split-files-out');
+
+  // Show info box immediately with loading state
+  infoEl.style.display = 'flex';
+  totalEl.textContent  = '…';
+  filesOutEl.textContent = '…';
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const bytes = new Uint8Array(e.target.result);
+      const text  = new TextDecoder('latin1').decode(bytes);
+
+      // Find /Count in PDF (number of pages)
+      let pages = 0;
+      const matches = [...text.matchAll(/\/Count\s+(\d+)/g)];
+      if (matches.length > 0) {
+        // Take the largest /Count (the root Pages node)
+        pages = Math.max(...matches.map(m => parseInt(m[1])));
+      }
+
+      if (pages < 1) pages = 1; // fallback
+      state.split.totalPages = pages;
+
+      totalEl.textContent    = pages;
+      filesOutEl.textContent = pages;
+      noteEl.innerHTML =
+        `All pages mode will create <strong>${pages}</strong> separate PDF file${pages > 1 ? 's' : ''}`;
+
+    } catch(err) {
+      infoEl.style.display = 'none';
+    }
+  };
+  // Only read first 64KB — /Count is always in the header
+  const slice = file.slice(0, 65536);
+  reader.readAsArrayBuffer(slice);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SPLIT — CALCULATE PAGES FROM CUSTOM RANGE INPUT
+═══════════════════════════════════════════════════════════════ */
+function calcRangePages() {
+  const rangeStr   = document.getElementById('split-range').value.trim();
+  const total      = state.split.totalPages || 0;
+  const previewEl  = document.getElementById('split-range-preview');
+  const tipEl      = document.getElementById('split-range-tip');
+  const noteEl     = document.getElementById('split-output-note');
+  const filesOutEl = document.getElementById('split-files-out');
+
+  if (!rangeStr) {
+    previewEl.textContent = '';
+    tipEl.textContent     = 'Enter pages e.g. 1-3, 5, 8-10';
+    if (total > 0) {
+      noteEl.innerHTML = `Enter a range to see how many files will be created`;
+      filesOutEl.textContent = '—';
+    }
+    return;
+  }
+
+  const pages = parseRange(rangeStr, total);
+
+  if (pages.length === 0) {
+    previewEl.textContent = '⚠️ Invalid range. ';
+    tipEl.textContent     = total > 0 ? `PDF has ${total} pages.` : '';
+    noteEl.innerHTML      = '⚠️ No valid pages in that range';
+    filesOutEl.textContent = '0';
+    return;
+  }
+
+  const count = pages.length;
+  previewEl.textContent = `✅ ${count} page${count > 1 ? 's' : ''} selected → `;
+  tipEl.textContent     = `${count} PDF file${count > 1 ? 's' : ''} will be created`;
+  noteEl.innerHTML =
+    `Page range will create <strong>${count}</strong> separate PDF file${count > 1 ? 's' : ''}`;
+  filesOutEl.textContent = count;
+}
+
+/* Parse range string like "1-3, 5, 7-9" into array of 0-indexed page numbers */
+function parseRange(rangeStr, total) {
+  const pages = new Set();
+  const parts = rangeStr.split(',');
+  for (let part of parts) {
+    part = part.trim();
+    if (!part) continue;
+    if (part.includes('-')) {
+      const [a, b] = part.split('-').map(s => parseInt(s.trim()));
+      if (isNaN(a) || isNaN(b)) continue;
+      const from = Math.max(1, a);
+      const to   = total > 0 ? Math.min(b, total) : b;
+      for (let i = from; i <= to; i++) pages.add(i);
+    } else {
+      const n = parseInt(part);
+      if (!isNaN(n) && n >= 1 && (total === 0 || n <= total)) pages.add(n);
+    }
+  }
+  return [...pages].sort((a, b) => a - b);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   AD INTERSTITIAL — 5s countdown after processing
+   Highest value ad slot: user just finished, about to download
+═══════════════════════════════════════════════════════════════ */
+let _pendingDl  = null;
+let _adTimer    = null;
+
+function showAdThen(downloadFn) {
+  _pendingDl = downloadFn;
+  document.getElementById('ad-overlay').classList.add('show');
+  document.getElementById('ad-skip').style.display = 'none';
+  let secs = 5;
+  const cd = document.getElementById('ad-countdown');
+  cd.textContent = secs;
+  _adTimer = setInterval(() => {
+    secs--;
+    cd.textContent = secs;
+    if (secs === 2) {
+      // Show skip link at 2s remaining
+      document.getElementById('ad-skip').style.display = 'block';
+    }
+    if (secs <= 0) {
+      clearInterval(_adTimer);
+      adSkipNow();
+    }
+  }, 1000);
+}
+
+function adSkipNow() {
+  clearInterval(_adTimer);
+  document.getElementById('ad-overlay').classList.remove('show');
+  if (_pendingDl) { _pendingDl(); _pendingDl = null; }
+}
+</script>
+</body>
+</html>
