@@ -279,7 +279,8 @@ def legal():
 def sitemap():
     p = Path('sitemap.xml')
     if p.exists():
-        return p.read_text(), 200, {'Content-Type': 'application/xml'}
+        from flask import Response
+        return Response(p.read_text(), mimetype='application/xml')
     return '<h1>Not found</h1>', 404
 
 @app.route('/robots.txt')
