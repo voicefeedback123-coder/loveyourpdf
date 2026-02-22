@@ -115,7 +115,7 @@ def compress():
         if not (10 <= quality <= 90):
             raise ValueError
     except (ValueError, TypeError):
-        quality_map = {'low': 75, 'medium': 50, 'high': 20}
+        quality_map = {'low': 20, 'medium': 50, 'high': 85}
         quality = quality_map.get(level, 50)
     
     data = f.read()
