@@ -268,6 +268,24 @@ def index():
         return html_path.read_text()
     return '<h1>LoveYourPDF - index.html not found</h1>', 404
 
+@app.route('/legal.html')
+def legal():
+    p = Path('legal.html')
+    if p.exists():
+        return p.read_text()
+    return '<h1>Not found</h1>', 404
+
+@app.route('/sitemap.xml')
+def sitemap():
+    p = Path('sitemap.xml')
+    if p.exists():
+        return p.read_text(), 200, {'Content-Type': 'application/xml'}
+    return '<h1>Not found</h1>', 404
+
+@app.route('/robots.txt')
+def robots():
+    return "User-agent: *\nAllow: /\nSitemap: https://www.loveyourpdf.com/sitemap.xml\n", 200, {'Content-Type': 'text/plain'}
+
 @app.route('/health')
 def health():
     return jsonify({'status': 'ok'})
