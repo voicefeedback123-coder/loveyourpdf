@@ -5,7 +5,5 @@ builder = "nixpacks"
 nixPkgs = ["python311", "poppler_utils"]
 
 [deploy]
-startCommand = "gunicorn app:app --workers 2 --threads 4 --timeout 120 --bind 0.0.0.0:$PORT"
-healthcheckPath = "/health"
-healthcheckTimeout = 120
+startCommand = "gunicorn app:app --workers 1 --threads 4 --timeout 300 --bind 0.0.0.0:$PORT"
 restartPolicyType = "on_failure"
