@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Privacy Policy and Terms of Use for LoveYourPDF — Free online PDF tools. Learn how we handle your files and data.">
+<title>Privacy Policy & Terms of Use — LoveYourPDF</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#E8341C;--red-dk:#c42a14;--red-lt:#fff3f0;
+  --bg:#F7F7F7;--white:#fff;
+  --g100:#F2F2F2;--g200:#E4E4E4;--g400:#A0A0A0;--g600:#5C5C5C;--g800:#1A1A1A;
+  --green:#16A34A;--blue:#1D6FE8;
+  --shadow:0 2px 12px rgba(0,0,0,.08);
+  --r:14px;--r-sm:10px;
+  --font:'Nunito',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--g800);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+/* HEADER */
+header{background:var(--white);border-bottom:1px solid var(--g200);position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.07)}
+.hd{max-width:960px;margin:0 auto;padding:0 20px;height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo-icon{font-size:24px}
+.logo-text{font-size:20px;font-weight:900;letter-spacing:-.4px}
+.logo-text .lt1{color:var(--red)}
+.logo-text .lt2{color:var(--g800)}
+.logo-text .lt3{color:var(--red)}
+.hd-back{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:800;color:var(--g600);text-decoration:none;padding:7px 14px;border-radius:20px;background:var(--g100);border:1.5px solid var(--g200);transition:all .15s}
+.hd-back:hover{background:var(--red-lt);color:var(--red);border-color:#FECDC6}
+
+/* HERO */
+.hero{background:linear-gradient(150deg,#fff8f6 0%,#ffffff 55%,#f0f6ff 100%);padding:40px 20px 32px;text-align:center;border-bottom:1px solid var(--g200)}
+.hero h1{font-size:clamp(22px,4vw,36px);font-weight:900;margin-bottom:10px;letter-spacing:-.3px}
+.hero h1 span{color:var(--red)}
+.hero p{font-size:14px;color:var(--g600);font-weight:600;max-width:480px;margin:0 auto}
+.last-updated{display:inline-flex;align-items:center;gap:6px;margin-top:14px;background:var(--white);border:1.5px solid var(--g200);border-radius:20px;padding:4px 14px;font-size:12px;font-weight:700;color:var(--g400)}
+
+/* NAV PILLS */
+.nav-pills{display:flex;justify-content:center;gap:10px;padding:20px;flex-wrap:wrap}
+.nav-pill{padding:8px 20px;border-radius:30px;font-size:13px;font-weight:800;text-decoration:none;transition:all .15s;border:2px solid var(--g200);color:var(--g600);background:var(--white)}
+.nav-pill:hover,.nav-pill.active{background:var(--red);color:#fff;border-color:var(--red)}
+
+/* MAIN */
+.wrap{max-width:800px;margin:0 auto;padding:20px 20px 60px}
+
+/* SECTION */
+.section{background:var(--white);border:1.5px solid var(--g200);border-radius:var(--r);padding:28px 32px;margin-bottom:20px;box-shadow:var(--shadow)}
+.section-icon{font-size:28px;margin-bottom:10px;display:block}
+.section h2{font-size:20px;font-weight:900;margin-bottom:6px;color:var(--g800)}
+.section .subtitle{font-size:13px;color:var(--g400);font-weight:700;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--g100)}
+.section h3{font-size:15px;font-weight:800;margin:20px 0 8px;color:var(--g800);display:flex;align-items:center;gap:8px}
+.section h3::before{content:'';width:3px;height:16px;background:var(--red);border-radius:2px;display:inline-block;flex-shrink:0}
+.section p{font-size:14px;color:var(--g600);font-weight:600;line-height:1.8;margin-bottom:12px}
+.section ul{margin:8px 0 12px 16px}
+.section ul li{font-size:14px;color:var(--g600);font-weight:600;line-height:1.8;margin-bottom:4px}
+.section ul li::marker{color:var(--red)}
+
+/* HIGHLIGHT BOX */
+.highlight{background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border:1.5px solid #a7f3d0;border-radius:var(--r-sm);padding:14px 18px;margin:16px 0;display:flex;gap:12px;align-items:flex-start}
+.highlight-icon{font-size:20px;flex-shrink:0;margin-top:1px}
+.highlight p{margin:0;color:#14532d;font-size:13.5px}
+
+.warning{background:#fffbeb;border:1.5px solid #fde68a;border-radius:var(--r-sm);padding:14px 18px;margin:16px 0;display:flex;gap:12px;align-items:flex-start}
+.warning p{margin:0;color:#92400e;font-size:13.5px}
+
+/* CONTACT BOX */
+.contact-box{background:linear-gradient(150deg,#fff8f6,#fff3f0);border:2px solid #FECDC6;border-radius:var(--r);padding:24px 28px;text-align:center;margin-top:24px}
+.contact-box h3{font-size:18px;font-weight:900;margin-bottom:8px;color:var(--g800)}
+.contact-box p{font-size:14px;color:var(--g600);font-weight:600;margin-bottom:16px}
+.contact-btn{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;border:none;border-radius:30px;padding:11px 24px;font-size:14px;font-weight:800;font-family:var(--font);cursor:pointer;text-decoration:none;transition:all .15s}
+.contact-btn:hover{background:var(--red-dk);transform:translateY(-1px)}
+
+/* DIVIDER */
+.section-divider{text-align:center;padding:8px 0;color:var(--g400);font-size:12px;font-weight:700;letter-spacing:.5px;margin:4px 0}
+
+/* FOOTER */
+footer{background:var(--g800);padding:28px 20px;text-align:center}
+.footer-inner{max-width:960px;margin:0 auto}
+.footer-logo{font-size:18px;font-weight:900;color:#fff;margin-bottom:6px}
+.footer-logo span{color:var(--red)}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.3);font-weight:600;margin-top:8px}
+.footer-links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin:12px 0}
+.footer-links a{font-size:12.5px;color:rgba(255,255,255,.5);font-weight:700;text-decoration:none;transition:color .15s}
+.footer-links a:hover{color:#fff}
+
+@media(max-width:480px){
+  .section{padding:20px 16px}
+  .hero{padding:28px 16px 24px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="hd">
+    <a href="/" class="logo">
+      <span class="logo-icon">❤️</span>
+      <span class="logo-text"><span class="lt1">Love</span><span class="lt2">Your</span><span class="lt3">PDF</span></span>
+    </a>
+    <a href="/" class="hd-back">← Back to Tools</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Privacy Policy & <span>Terms of Use</span></h1>
+  <p>We believe in full transparency. Here's exactly how LoveYourPDF works and how we handle your files.</p>
+  <div class="last-updated">📅 Last updated: February 2025</div>
+</div>
+
+<!-- NAV -->
+<div class="nav-pills">
+  <a href="#privacy" class="nav-pill active">🔒 Privacy Policy</a>
+  <a href="#terms" class="nav-pill">📋 Terms of Use</a>
+  <a href="#cookies" class="nav-pill">🍪 Cookie Policy</a>
+  <a href="#contact" class="nav-pill">✉️ Contact</a>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="wrap">
+
+  <!-- ── PRIVACY POLICY ─────────────────────── -->
+  <div class="section" id="privacy">
+    <span class="section-icon">🔒</span>
+    <h2>Privacy Policy</h2>
+    <div class="subtitle">How we collect, use, and protect your information</div>
+
+    <div class="highlight">
+      <span class="highlight-icon">✅</span>
+      <p><strong>Short version:</strong> We don't store your files. All uploaded documents are automatically deleted from our servers within 10 minutes. We never read, sell, or share your files with anyone.</p>
+    </div>
+
+    <h3>Information We Collect</h3>
+    <p>When you use LoveYourPDF, we collect minimal information necessary to provide our service:</p>
+    <ul>
+      <li><strong>Uploaded files</strong> — temporarily stored on our servers during processing only</li>
+      <li><strong>Usage data</strong> — anonymous data such as which tools are used, browser type, and general location (country level)</li>
+      <li><strong>Log data</strong> — standard server logs including IP address, timestamps, and error logs for security and debugging</li>
+    </ul>
+
+    <h3>How We Use Your Files</h3>
+    <p>Your uploaded files are used exclusively to perform the PDF operation you requested (merge, split, compress, convert). We do not:</p>
+    <ul>
+      <li>Read or analyse the content of your documents</li>
+      <li>Store files longer than 10 minutes after processing</li>
+      <li>Share files with any third party</li>
+      <li>Use your files for training AI or machine learning models</li>
+      <li>Back up or archive your files</li>
+    </ul>
+
+    <h3>Automatic File Deletion</h3>
+    <p>All uploaded and processed files are permanently deleted from our servers automatically within <strong>10 minutes</strong> of processing. This is enforced at the server level and cannot be overridden.</p>
+
+    <div class="highlight">
+      <span class="highlight-icon">🗑️</span>
+      <p>Files are stored only in temporary memory during processing and written to a temporary folder that is automatically cleared every 10 minutes. No files are ever moved to permanent storage.</p>
+    </div>
+
+    <h3>Advertising & Third Parties</h3>
+    <p>LoveYourPDF uses Google AdSense to display advertisements. Google may use cookies to serve ads based on your prior visits to our website or other websites. You can opt out of personalised advertising by visiting <strong>Google's Ads Settings</strong>.</p>
+    <p>We also use Google Analytics to understand how visitors use our site. This data is anonymous and aggregated — it cannot be used to identify you personally.</p>
+
+    <h3>Data Security</h3>
+    <p>All data transfers between your browser and our servers are encrypted using <strong>SSL/TLS (HTTPS)</strong>. File uploads and downloads are transmitted over secure connections only.</p>
+
+    <h3>Children's Privacy</h3>
+    <p>LoveYourPDF is not directed at children under 13 years of age. We do not knowingly collect personal information from children under 13.</p>
+
+    <h3>Your Rights</h3>
+    <p>Since we don't store personal data beyond server logs, there is typically nothing to delete. However, if you believe we hold any data about you, you may contact us to request deletion. We will respond within 30 days.</p>
+
+    <h3>Changes to This Policy</h3>
+    <p>We may update this Privacy Policy from time to time. We will notify users of significant changes by updating the "Last updated" date at the top of this page. Continued use of the service after changes constitutes acceptance of the new policy.</p>
+  </div>
+
+  <div class="section-divider">· · ·</div>
+
+  <!-- ── TERMS OF USE ────────────────────────── -->
+  <div class="section" id="terms">
+    <span class="section-icon">📋</span>
+    <h2>Terms of Use</h2>
+    <div class="subtitle">Rules and conditions for using LoveYourPDF</div>
+
+    <div class="warning">
+      <span style="font-size:20px;flex-shrink:0">⚠️</span>
+      <p>By using LoveYourPDF, you agree to these Terms of Use. If you do not agree, please do not use our service.</p>
+    </div>
+
+    <h3>Acceptance of Terms</h3>
+    <p>By accessing or using LoveYourPDF ("the Service"), you agree to be bound by these Terms of Use and our Privacy Policy. These terms apply to all visitors and users of the Service.</p>
+
+    <h3>Description of Service</h3>
+    <p>LoveYourPDF provides free, browser-based PDF tools including:</p>
+    <ul>
+      <li>Merge PDF — combine multiple PDF files into one</li>
+      <li>Split PDF — extract pages from a PDF</li>
+      <li>Compress PDF — reduce PDF file size</li>
+      <li>JPG to PDF — convert images to PDF format</li>
+      <li>PDF to JPG — convert PDF pages to image files</li>
+    </ul>
+
+    <h3>Acceptable Use</h3>
+    <p>You agree to use LoveYourPDF only for lawful purposes. You must not:</p>
+    <ul>
+      <li>Upload files containing illegal, harmful, or offensive content</li>
+      <li>Upload files that violate copyright or intellectual property rights of others</li>
+      <li>Attempt to hack, overload, or disrupt the service</li>
+      <li>Use automated bots or scripts to make excessive requests</li>
+      <li>Upload malware, viruses, or any malicious code</li>
+      <li>Use the service for any commercial redistribution without permission</li>
+    </ul>
+
+    <h3>File Size & Usage Limits</h3>
+    <p>To ensure fair access for all users, the following limits apply:</p>
+    <ul>
+      <li>Maximum file size: <strong>25MB per file</strong></li>
+      <li>Maximum files per operation: <strong>5 files</strong></li>
+      <li>These limits may change without prior notice</li>
+    </ul>
+
+    <h3>Intellectual Property</h3>
+    <p>You retain full ownership of all files you upload. By uploading files, you grant LoveYourPDF a temporary, limited licence to process those files solely for the purpose of providing the requested service. This licence expires immediately upon file deletion (within 10 minutes).</p>
+
+    <h3>Disclaimer of Warranties</h3>
+    <p>LoveYourPDF is provided "as is" without any warranties, express or implied. We do not guarantee that:</p>
+    <ul>
+      <li>The service will be available at all times without interruption</li>
+      <li>Processing results will always meet your expectations</li>
+      <li>The service is free from errors or bugs</li>
+    </ul>
+
+    <h3>Limitation of Liability</h3>
+    <p>To the maximum extent permitted by applicable law, LoveYourPDF shall not be liable for any indirect, incidental, special, or consequential damages resulting from your use or inability to use the service, including but not limited to data loss or corruption.</p>
+
+    <h3>Governing Law</h3>
+    <p>These Terms are governed by and construed in accordance with the laws of India. Any disputes shall be resolved in the courts of India.</p>
+
+    <h3>Changes to Terms</h3>
+    <p>We reserve the right to modify these Terms at any time. Continued use of the service after changes constitutes your acceptance of the updated Terms.</p>
+  </div>
+
+  <div class="section-divider">· · ·</div>
+
+  <!-- ── COOKIE POLICY ───────────────────────── -->
+  <div class="section" id="cookies">
+    <span class="section-icon">🍪</span>
+    <h2>Cookie Policy</h2>
+    <div class="subtitle">How and why we use cookies</div>
+
+    <h3>What Are Cookies</h3>
+    <p>Cookies are small text files placed on your device by websites you visit. They are widely used to make websites work efficiently and to provide information to website owners.</p>
+
+    <h3>Cookies We Use</h3>
+    <p>LoveYourPDF uses the following types of cookies:</p>
+    <ul>
+      <li><strong>Essential cookies</strong> — required for the service to function. Cannot be disabled.</li>
+      <li><strong>Analytics cookies</strong> — Google Analytics to understand how visitors use our site (anonymous data only)</li>
+      <li><strong>Advertising cookies</strong> — Google AdSense to display relevant advertisements</li>
+    </ul>
+
+    <h3>Managing Cookies</h3>
+    <p>You can control and manage cookies in your browser settings. You can also opt out of Google's use of cookies for advertising by visiting <strong>Google's Ads Settings</strong>. Note that disabling cookies may affect the functionality of some features.</p>
+
+    <div class="highlight">
+      <span class="highlight-icon">ℹ️</span>
+      <p>We never use cookies to store or access your uploaded files. Cookies are only used for analytics and advertising purposes as described above.</p>
+    </div>
+  </div>
+
+  <div class="section-divider">· · ·</div>
+
+  <!-- ── CONTACT ─────────────────────────────── -->
+  <div class="section" id="contact">
+    <span class="section-icon">✉️</span>
+    <h2>Contact Us</h2>
+    <div class="subtitle">Questions about privacy or terms? We're here to help.</div>
+
+    <p>If you have any questions about this Privacy Policy, Terms of Use, or how we handle your data, please don't hesitate to reach out.</p>
+
+    <div class="contact-box">
+      <h3>Get in Touch</h3>
+      <p>We typically respond within 1–2 business days.</p>
+      <a href="mailto:hello@loveyourpdf.com" class="contact-btn">✉️ hello@loveyourpdf.com</a>
+    </div>
+
+    <h3>Data Requests</h3>
+    <p>For data deletion requests or privacy concerns, please email us with the subject line <strong>"Privacy Request"</strong>. We will respond within 30 days as required by applicable law.</p>
+
+    <h3>Report Abuse</h3>
+    <p>If you believe someone is using LoveYourPDF to process illegal content or violate these terms, please report it to us immediately at the email above with subject line <strong>"Abuse Report"</strong>.</p>
+  </div>
+
+</div><!-- /wrap -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">❤️ LoveYour<span>PDF</span></div>
+    <div class="footer-links">
+      <a href="/">PDF Tools</a>
+      <a href="/legal.html">Privacy Policy</a>
+      <a href="/legal.html#terms">Terms of Use</a>
+      <a href="/legal.html#contact">Contact</a>
+    </div>
+    <div class="footer-copy">© 2025 LoveYourPDF.com · All files automatically deleted · 100% Free</div>
+  </div>
+</footer>
+
+<script>
+// Highlight active nav pill on scroll
+const sections = ['privacy','terms','cookies','contact'];
+const pills = document.querySelectorAll('.nav-pill');
+window.addEventListener('scroll', () => {
+  let current = 'privacy';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 120) current = id;
+  });
+  pills.forEach(p => {
+    p.classList.toggle('active', p.getAttribute('href') === '#' + current);
+  });
+});
+</script>
+
+</body>
+</html>
