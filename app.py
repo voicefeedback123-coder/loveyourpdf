@@ -101,7 +101,7 @@ def split():
 
 
 # ── COMPRESS ───────────────────────────────────────────────────────
-@app.route('/api/compress', methods=['POST'])
+@app.route('/api/compress', methods='POST')
 def compress():
     f = request.files.get('file')
     if not f: return err('No file uploaded')
@@ -121,70 +121,52 @@ def compress():
     original_size = len(data)
 
     try:
-        import pikepdf
+        from pdf2image import convert_from_bytes
         from PIL import Image
+        from reportlab.pdfgen import canvas as rl_canvas
+        from reportlab.lib.utils import ImageReader
 
-        pdf = pikepdf.open(io.BytesIO(data))
+        # DPI based on quality: lower quality = lower DPI = smaller file
+        if quality <= 25:
+            dpi = 72
+        elif quality <= 50:
+            dpi = 96
+        elif quality <= 75:
+            dpi = 120
+        else:
+            dpi = 150
 
-        for page in pdf.pages:
-            try:
-                resources = page.get('/Resources', {})
-                xobjects = resources.get('/XObject', {})
-                for key in list(xobjects.keys()):
-                    xobj = xobjects[key]
-                    try:
-                        if xobj.get('/Subtype') != '/Image':
-                            continue
-                        # Decode the image safely using pikepdf
-                        raw = xobj.read_bytes()
-                        img = Image.open(io.BytesIO(raw))
-                        img.load()
-
-                        # Convert to RGB safely
-                        if img.mode in ('RGBA', 'LA', 'P'):
-                            bg = Image.new('RGB', img.size, (255, 255, 255))
-                            if img.mode == 'P':
-                                img = img.convert('RGBA')
-                            try:
-                                bg.paste(img, mask=img.split()[-1])
-                            except Exception:
-                                bg = img.convert('RGB')
-                            img = bg
-                        elif img.mode != 'RGB':
-                            img = img.convert('RGB')
-
-                        # Only recompress if new JPEG will be smaller
-                        buf = io.BytesIO()
-                        img.save(buf, 'JPEG', quality=quality, optimize=True, progressive=True)
-                        new_bytes = buf.getvalue()
-
-                        if len(new_bytes) < len(raw):
-                            xobj.stream_data = new_bytes
-                            xobj['/Filter'] = pikepdf.Name('/DCTDecode')
-                            xobj['/ColorSpace'] = pikepdf.Name('/DeviceRGB')
-                            xobj['/BitsPerComponent'] = 8
-                            for key_del in ['/DecodeParms', '/SMask', '/Mask']:
-                                try:
-                                    if key_del in xobj:
-                                        del xobj[key_del]
-                                except Exception:
-                                    pass
-                    except Exception:
-                        continue  # Skip images that can't be processed
-            except Exception:
-                continue
+        # Render PDF pages as images
+        pages = convert_from_bytes(data, dpi=dpi)
 
         out = io.BytesIO()
-        pdf.save(out,
-                 compress_streams=True,
-                 stream_decode_level=pikepdf.StreamDecodeLevel.generalized,
-                 object_stream_mode=pikepdf.ObjectStreamMode.generate,
-                 normalize_content=True)
-        out.seek(0)
+        c = rl_canvas.Canvas(out)
+
+        for page_img in pages:
+            # Convert to RGB
+            if page_img.mode != 'RGB':
+                page_img = page_img.convert('RGB')
+
+            # Save page as JPEG in memory
+            img_buf = io.BytesIO()
+            page_img.save(img_buf, 'JPEG', quality=quality, optimize=True)
+            img_buf.seek(0)
+
+            # Add to PDF at same dimensions
+            w, h = page_img.size
+            # Convert pixels to points (72 points per inch)
+            w_pt = w * 72 / dpi
+            h_pt = h * 72 / dpi
+
+            c.setPageSize((w_pt, h_pt))
+            c.drawImage(ImageReader(img_buf), 0, 0, w_pt, h_pt)
+            c.showPage()
+
+        c.save()
         compressed = out.getvalue()
         new_size = len(compressed)
 
-        # CRITICAL: never return a file larger than original
+        # Safety: never return larger file
         if new_size >= original_size:
             compressed = data
             new_size = original_size
@@ -199,7 +181,6 @@ def compress():
         return response
     except Exception as e:
         return err(f'Compression failed: {str(e)[:100]}')
-
 
 # ── JPG → PDF ──────────────────────────────────────────────────────
 @app.route('/api/jpg-to-pdf', methods=['POST'])
