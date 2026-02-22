@@ -575,9 +575,9 @@ footer{background:var(--g800);border-top:none;padding:36px 20px 28px;text-align:
       <!-- Preset chips -->
       <div class="opts-label">Quick Presets</div>
       <div class="chip-row">
-        <button class="chip" id="chip-low"    onclick="setPreset(85,this)">🟢 Low<small>Best quality</small></button>
+        <button class="chip" id="chip-low"    onclick="setPreset(20,this)">🔴 Low<small>Maximum compression</small></button>
         <button class="chip on" id="chip-med" onclick="setPreset(50,this)">🟡 Medium<small>Balanced</small></button>
-        <button class="chip" id="chip-high"   onclick="setPreset(20,this)">🔴 High<small>Smallest file</small></button>
+        <button class="chip" id="chip-high"   onclick="setPreset(85,this)">🟢 High<small>Best quality</small></button>
       </div>
 
       <!-- Quality slider -->
@@ -590,7 +590,7 @@ footer{background:var(--g800);border-top:none;padding:36px 20px 28px;text-align:
                min="10" max="90" value="50" step="1"
                oninput="onSliderMove(this.value)">
         <div class="quality-ticks">
-          <span class="quality-tick">10% — Max compression</span>
+          <span class="quality-tick">10% — Smallest file</span>
           <span class="quality-tick">90% — Best quality</span>
         </div>
       </div>
@@ -1155,12 +1155,12 @@ function setSplitMode(mode, el) {
    - Text-only PDFs: minimal size change regardless of setting
    We assume a mixed PDF for estimates (realistic middle ground) */
 function estCompressedSize(origBytes, quality) {
-  // quality: 10-90
-  // At quality=90: ~85% of original (very little compression)
-  // At quality=50: ~55% of original  
-  // At quality=10: ~25% of original
-  // Linear interpolation between these anchors
-  const ratio = 0.20 + (quality / 90) * 0.70; // 0.20 → 0.90
+  // quality: 10-90 (JPEG quality sent to backend)
+  // Higher quality = less compression = larger file
+  // At quality=10:  ~15% of original (max compression)
+  // At quality=50:  ~50% of original (balanced)
+  // At quality=85:  ~80% of original (best quality)
+  const ratio = 0.10 + (quality / 90) * 0.80; // 0.10 → 0.90
   return Math.round(origBytes * ratio);
 }
 
@@ -1182,12 +1182,12 @@ function onSliderMove(quality, clearChips = true) {
   badge.textContent = quality + '%';
 
   // Badge colour based on quality
-  if (quality >= 70) {
-    badge.style.background = '#f0fdf4'; badge.style.color = '#15803d'; badge.style.borderColor = '#a7f3d0';
-  } else if (quality >= 40) {
+  if (quality <= 30) {
+    badge.style.background = 'var(--red-lt)'; badge.style.color = 'var(--red)'; badge.style.borderColor = 'var(--red-mid)';
+  } else if (quality <= 65) {
     badge.style.background = '#fefce8'; badge.style.color = '#a16207'; badge.style.borderColor = '#fde68a';
   } else {
-    badge.style.background = 'var(--red-lt)'; badge.style.color = 'var(--red)'; badge.style.borderColor = 'var(--red-mid)';
+    badge.style.background = '#f0fdf4'; badge.style.color = '#15803d'; badge.style.borderColor = '#a7f3d0';
   }
 
   // Update slider track fill
@@ -1198,15 +1198,15 @@ function onSliderMove(quality, clearChips = true) {
   // Auto-select nearest preset chip (snap within ±15)
   if (clearChips) {
     document.querySelectorAll('#compress-opts .chip').forEach(c => c.classList.remove('on'));
-    if (quality >= 75)      document.getElementById('chip-low')?.classList.add('on');
-    else if (quality >= 35) document.getElementById('chip-med')?.classList.add('on');
+    if (quality <= 30)      document.getElementById('chip-low')?.classList.add('on');
+    else if (quality <= 65) document.getElementById('chip-med')?.classList.add('on');
     else                    document.getElementById('chip-high')?.classList.add('on');
   }
 
   // Map quality% to backend level string
-  if (quality >= 70)       state.compress.level = 'low';
-  else if (quality >= 35)  state.compress.level = 'medium';
-  else                     state.compress.level = 'high';
+  if (quality <= 30)       state.compress.level = 'high';
+  else if (quality <= 65)  state.compress.level = 'medium';
+  else                     state.compress.level = 'low';
 
   // Store exact quality for future custom API use
   state.compress.quality = quality;
@@ -1227,16 +1227,16 @@ function updateSizeEstimate(quality) {
 
   document.getElementById('se-original').textContent = origMB;
   document.getElementById('se-new').textContent      = '~' + estMB;
-  document.getElementById('se-saving').textContent   = '~' + Math.max(0, saving) + '% saved';
+  document.getElementById('se-saving').textContent   = '~' + Math.max(0, saving) + '% est.';
 
   // Note changes based on quality
   const noteEl = document.getElementById('se-note');
-  if (quality >= 75) {
-    noteEl.textContent = 'Minimal compression — best visual quality preserved';
-  } else if (quality >= 40) {
-    noteEl.textContent = 'Good balance of size and quality — recommended for most uses';
+  if (quality <= 30) {
+    noteEl.textContent = 'Est. for image-heavy PDFs — text-only PDFs may save less';
+  } else if (quality <= 65) {
+    noteEl.textContent = 'Est. for image-heavy PDFs — actual savings depend on PDF content';
   } else {
-    noteEl.textContent = 'Heavy compression — smaller file, may reduce image quality';
+    noteEl.textContent = 'Est. for image-heavy PDFs — best quality, minimal compression';
   }
 }
 
