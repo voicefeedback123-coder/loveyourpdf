@@ -301,6 +301,10 @@ def sitemap():
 def robots():
     return "User-agent: *\nAllow: /\nSitemap: https://www.loveyourpdf.com/sitemap.xml\n", 200, {'Content-Type': 'text/plain'}
 
+
+@app.route('/ads.txt')
+def ads_txt():
+    return "google.com, pub-6842787570866013, DIRECT, f08c47fec0942fa0\n", 200, {'Content-Type': 'text/plain'}
 @app.route('/health')
 def health():
     return jsonify({'status': 'ok'})
